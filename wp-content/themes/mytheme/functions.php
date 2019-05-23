@@ -166,6 +166,35 @@ if (defined('JETPACK__VERSION')) {
     require get_template_directory() . '/inc/jetpack.php';
 }
 
+
+/**
+ * add image size
+ */
+
+add_image_size('blog-thimbmail', 400, 300, false);
+
+/**
+ * Custom excerpt link
+ */
+
+function custom_excerpt_more()
+{
+    return sprintf(' <a href="%1$s" class="read-more" >%2$s</a>', get_permalink(get_the_ID()), __('...Continue', 'textdomain'));
+}
+
+add_filter('excerpt_more', 'custom_excerpt_more');
+
+/**
+ * Custom excerpt length
+ */
+
+function custom_excerpt_lengh()
+{
+    return 50;
+}
+
+add_filter('excerpt_length', 'custom_excerpt_lengh');
+
 /**
  * Custom post type
  */
