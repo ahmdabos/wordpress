@@ -159,3 +159,8 @@ if ( defined( 'JETPACK__VERSION' ) ) {
 	require get_template_directory() . '/inc/jetpack.php';
 }
 
+
+/**
+ * Load Jetpack compatibility file.
+ */
+add_image_size(  'blog-thumbnail',  440, 200, false );
