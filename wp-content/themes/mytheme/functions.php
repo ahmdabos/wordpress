@@ -213,3 +213,23 @@ require get_template_directory() . '/inc/custom-taxonomy.php';
 
 require get_template_directory() . '/inc/custom-metabox.php';
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
