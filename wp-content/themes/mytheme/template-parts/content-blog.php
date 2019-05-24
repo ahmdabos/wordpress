@@ -17,5 +17,6 @@ if ($wp_query->have_posts()) :
         <div><?php the_excerpt() ?></div>
 
 
+
     <?php endwhile; ?>
 <?php endif; ?>

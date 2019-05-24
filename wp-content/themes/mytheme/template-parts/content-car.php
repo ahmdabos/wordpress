@@ -16,15 +16,14 @@ if ($wp_query->have_posts()) :
         <div><?php the_category() ?></div>
         <div><?php the_excerpt() ?></div>
 
-        <?php
 
+        <?php
 
         $year = get_post_meta(get_the_ID(), 'car_year', true);
 
         if (!empty($year)) {
             echo '<h3>Year: ' . $year . '<h3>';
         }
-
         $car_sunroof = get_post_meta(get_the_ID(), 'car_sunroof', true);
         if (!empty($car_sunroof)) {
             echo '<h3> Car Sunroof: ' . $car_sunroof . '<h3>';
@@ -41,7 +40,6 @@ if ($wp_query->have_posts()) :
         if (!empty($car_currency)) {
             echo '<h3> Car Intro: ' . $car_intro . '<h3>';
         }
-        ?>
         ?>
 
 

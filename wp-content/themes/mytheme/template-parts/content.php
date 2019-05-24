@@ -8,39 +8,23 @@
  */
 
 ?>
-
 <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
     <header class="entry-header">
         <h1><?php the_title() ?> </h1>
     </header><!-- .entry-header -->
-
     <?php the_post_thumbnail() ?>
-
-
     <div class="entry-content">
-        <?php
-        the_content(sprintf(
-            wp_kses(
-            /* translators: %s: Name of current post. Only visible to screen readers */
-                __('Continue reading<span class="screen-reader-text"> "%s"</span>', 'mytheme'),
-                array(
-                    'span' => array(
-                        'class' => array(),
-                    ),
-                )
-            ),
-            get_the_title()
-        ));
-
-        wp_link_pages(array(
-            'before' => '<div class="page-links">' . esc_html__('Pages:', 'mytheme'),
-            'after' => '</div>',
-        ));
-        ?>
+        <?php the_content(); ?>
     </div><!-- .entry-content -->
+    <?php
+    $year = get_post_meta(get_the_ID(), 'car_year', true);
 
+    if (!empty($year)) {
+        echo '<h3>Year: ' . $year . '<h3>';
+    }
+    ?>
     <footer class="entry-footer">
         <h3> Categories: <?php the_category() ?></h3>
-        <h3><?php the_tags() ?></h3>
+        <h3>Tags: <?php the_tags() ?></h3>
     </footer><!-- .entry-footer -->
 </article><!-- #post-<?php the_ID(); ?> -->
