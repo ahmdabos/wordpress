@@ -47,12 +47,26 @@ class Car_Info_Meta_Box
         $car_price = get_post_meta($post->ID, 'car_price', true);
         $car_currency = get_post_meta($post->ID, 'car_currency', true);
         $car_intro = get_post_meta($post->ID, 'car_intro', true);
+        $car_condition = get_post_meta($post->ID, 'car_condition', true);
+        $car_details = get_post_meta($post->ID, 'car_details', true);
+        $car_url = get_post_meta($post->ID, 'car_url', true);
+        $car_email = get_post_meta($post->ID, 'car_email', true);
+        $car_date = get_post_meta( $post->ID, 'car_date', true );
+
+
+
         // Set default values.
         if (empty($car_year)) $car_year = '';
         if (empty($car_sunroof)) $car_sunroof = '';
         if (empty($car_price)) $car_price = '';
         if (empty($car_currency)) $car_currency = '';
         if (empty($car_intro)) $car_intro = '';
+        if (empty($car_condition)) $car_condition = '';
+        if (empty($car_details)) $car_details = '';
+        if (empty($car_url)) $car_url = '';
+        if (empty($car_email)) $car_email = '';
+        if( empty( $car_date ) ) $car_date = '';
+
         // Form fields.
         echo '<table class="form-table">';
 
@@ -101,7 +115,41 @@ class Car_Info_Meta_Box
         echo '		</td>';
         echo '	</tr>';
 
+        echo '	<tr>';
+        echo '		<th><label for="car_condition" class="car_condition_label">' . __('Car Condition', 'text_domain') . '</label></th>';
+        echo '		<td>';
+        echo '			<label><input type="radio" name="car_condition" class="car_condition_field" value="new" ' . checked($car_condition, 'new', false) . '> ' . __('New', 'text_domain') . '</label><br>';
+        echo '			<label><input type="radio" name="car_condition" class="car_condition_field" value="used" ' . checked($car_condition, 'used', false) . '> ' . __('Used', 'text_domain') . '</label><br>';
+        echo '		</td>';
+        echo '	</tr>';
 
+        echo '	<tr>';
+        echo '		<th><label for="car_details" class="car_details_label">' . __('Car Details', 'text_domain') . '</label></th>';
+        echo '		<td>';
+        wp_editor($car_details, 'car_details', array('media_buttons' => true));
+        echo '			<p class="description">' . __('ok', 'text_domain') . '</p>';
+        echo '		</td>';
+        echo '	</tr>';
+
+        echo '	<tr>';
+        echo '		<th><label for="car_url" class="car_url_label">' . __('Company URL', 'translate') . '</label></th>';
+        echo '		<td>';
+        echo '			<input type="url" id="car_url" name="car_url" class="car_url_field" placeholder="' . esc_attr__('', 'text_domain') . '" value="' . esc_attr($car_url) . '">';
+        echo '		</td>';
+        echo '	</tr>';
+        echo '	<tr>';
+        echo '		<th><label for="car_email" class="car_email_label">' . __('E-Mail Address', 'dd_theme') . '</label></th>';
+        echo '		<td>';
+        echo '			<input type="email" id="car_email" name="car_email" class="car_email_field" placeholder="' . esc_attr__('E-Mail', 'text_domain') . '" value="' . esc_attr($car_email) . '">';
+        echo '		</td>';
+        echo '	</tr>';
+
+        echo '	<tr>';
+        echo '		<th><label for="car_date" class="car_date_label">' . __( 'Start Date', 'text_domain' ) . '</label></th>';
+        echo '		<td>';
+        echo '			<input type="date" id="car_date" name="car_date" class="car_date_field" placeholder="' . esc_attr__( '', 'text_domain' ) . '" value="' . esc_attr( $car_date ) . '">';
+        echo '		</td>';
+        echo '	</tr>';
 
         echo '</table>';
 
@@ -141,6 +189,12 @@ class Car_Info_Meta_Box
         $car_new_price = isset($_POST['car_price']) ? sanitize_text_field($_POST['car_price']) : '';
         $car_new_currency = isset($_POST['car_currency']) ? $_POST['car_currency'] : '';
         $car_new_intro = isset($_POST['car_intro']) ? $_POST['car_intro'] : '';
+        $car_condition = isset($_POST['car_condition']) ? $_POST['car_condition'] : '';
+        $afc_new_course_intro = isset($_POST['car_details']) ? wp_kses_post($_POST['car_details']) : '';
+        $wcd_new_company_url = isset($_POST['car_url']) ? esc_url($_POST['car_url']) : '';
+        $team_new_email = isset($_POST['car_email']) ? sanitize_email($_POST['car_email']) : '';
+        $events_new_event_start_date = isset( $_POST[ 'car_date' ] ) ? sanitize_text_field( $_POST[ 'car_date' ] ) : '';
+
 
         // Update the meta field in the database.
         update_post_meta($post_id, 'car_year', $car_new_year);
@@ -148,10 +202,20 @@ class Car_Info_Meta_Box
         update_post_meta($post_id, 'car_price', $car_new_price);
         update_post_meta($post_id, 'car_currency', $car_new_currency);
         update_post_meta($post_id, 'car_intro', $car_new_intro);
+        update_post_meta($post_id, 'car_condition', $car_condition);
+        update_post_meta($post_id, 'car_details', $afc_new_course_intro);
+        update_post_meta($post_id, 'car_url', $wcd_new_company_url);
+        update_post_meta($post_id, 'car_email', $team_new_email);
+        update_post_meta( $post_id, 'car_date', $events_new_event_start_date );
+
     }
 
 }
 
+
+
 new Car_Info_Meta_Box;
+
+
 
 
