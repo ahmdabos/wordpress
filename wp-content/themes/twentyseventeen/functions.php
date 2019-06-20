@@ -188,6 +188,7 @@ function twentyseventeen_setup() {
 			'page_for_posts' => '{{blog}}',
 		),
 
+
 		// Set the front page section theme mods to the IDs of the core-registered pages.
 		'theme_mods'  => array(
 			'panel_1' => '{{homepage-section}}',
@@ -292,7 +293,6 @@ function twentyseventeen_fonts_url() {
 		$font_families = array();
 
 		$font_families[] = 'Libre Franklin:300,300i,400,400i,600,600i,800,800i';
-
 		$query_args = array(
 			'family' => urlencode( implode( '|', $font_families ) ),
 			'subset' => urlencode( 'latin,latin-ext' ),
@@ -326,6 +326,7 @@ function twentyseventeen_resource_hints( $urls, $relation_type ) {
 add_filter( 'wp_resource_hints', 'twentyseventeen_resource_hints', 10, 2 );
 
 /**
+ *
  * Register widget area.
  *
  * @link https://developer.wordpress.org/themes/functionality/sidebars/#registering-a-sidebar
@@ -333,9 +334,9 @@ add_filter( 'wp_resource_hints', 'twentyseventeen_resource_hints', 10, 2 );
 function twentyseventeen_widgets_init() {
 	register_sidebar(
 		array(
-			'name'          => __( 'Blog Sidebar', 'twentyseventeen' ),
+			'name'          => __('Blog Sidebar', 'twentyseventeen'),
 			'id'            => 'sidebar-1',
-			'description'   => __( 'Add widgets here to appear in your sidebar on blog posts and archive pages.', 'twentyseventeen' ),
+			'description'   => __( 'Add widgets here to appear in your sidebar on blog posts and archive pages.', 'twentyseventeen'),
 			'before_widget' => '<section id="%1$s" class="widget %2$s">',
 			'after_widget'  => '</section>',
 			'before_title'  => '<h2 class="widget-title">',
