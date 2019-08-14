@@ -1,0 +1,43 @@
+/* 
+ *  Slider's Container CSS File
+ *  v1.0.0
+ */
+
+/* Normalize */
+.add_slide{
+    padding:0 12px 12px
+}
+
+/* Slider Inline & Close Icons */
+#oc-slider-slide-container {
+    width: 100%;   
+    float:left;
+}
+#oc-slider-slide-container ul{
+    overflow: hidden;
+}
+#oc-slider-slide-container ul li.slide{
+    float:left;
+    margin-left: 15px;
+    position: relative;
+    width: 192px;
+}
+#oc-slider-slide-container .attachment-thumbnail.size-thumbnail,
+#oc-slider-slide-container img {
+    height: 192px;
+    width: 192px;
+}
+#oc-slider-slide-container .delete {
+    position: absolute;
+    right: 4px;
+    top: -1px;
+}
+#oc-slider-slide-container .delete i{
+    color: #ff0000;
+}
+#oc-slider-slide-container .slide input{
+    width: 192px;
+}
+i.mce-ico.mce-i-icon.oc-icon {
+    background-image: url(../images/oc-icon.png);
+}
