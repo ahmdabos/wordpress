@@ -73,7 +73,8 @@ class Simple_Owl_Carousel_Public
      */
     public function enqueue_scripts()
     {
-        wp_register_script($this->simple_owl_carousel . '-owl-carousel', '', array('jquery'), '1.3.3', TRUE);
+        wp_enqueue_script('jquery', plugin_dir_url(__FILE__) . 'js/jquery-2.2.4.min.js', array(''), '2.2.4', TRUE);
+        wp_enqueue_script('owl-carousel', plugin_dir_url(__FILE__) . 'js/owl.carousel.min.js', array('jquery'), '2.3.4', TRUE);
     }
 
 
