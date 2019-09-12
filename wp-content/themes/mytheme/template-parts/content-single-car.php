@@ -6,8 +6,10 @@
 <div>Tags: <?php the_tags() ?></div>
 <div><?php the_content() ?></div>
 
-<?php
 
+
+
+<?php
 $year = get_post_meta(get_the_ID(), 'car_year', true);
 
 if (!empty($year)) {

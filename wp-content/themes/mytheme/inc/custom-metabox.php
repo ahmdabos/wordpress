@@ -2,25 +2,19 @@
 
 class Car_Info_Meta_Box
 {
-
     public function __construct()
     {
-
         if (is_admin()) {
             add_action('load-post.php', array($this, 'init_metabox'));
             add_action('load-post-new.php', array($this, 'init_metabox'));
         }
-
     }
-
     public function init_metabox()
     {
-
         add_action('add_meta_boxes', array($this, 'add_metabox'));
         add_action('save_post', array($this, 'save_metabox'), 10, 2);
 
     }
-
     public function add_metabox()
     {
 
@@ -34,7 +28,6 @@ class Car_Info_Meta_Box
         );
 
     }
-
     public function render_metabox($post)
     {
 
@@ -155,7 +148,6 @@ class Car_Info_Meta_Box
 
 
     }
-
     public function save_metabox($post_id, $post)
     {
 
@@ -209,10 +201,7 @@ class Car_Info_Meta_Box
         update_post_meta( $post_id, 'car_date', $events_new_event_start_date );
 
     }
-
 }
-
-
 
 new Car_Info_Meta_Box;
 

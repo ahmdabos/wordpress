@@ -998,3 +998,200 @@ object {
     margin: 0;
     padding: 0;
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+*{
+    box-sizing:border-box;
+}
+body {
+    font-family: 'Roboto', sans-serif;
+    font-weight: 200;
+    font-size: 1.5em;
+    line-height: 1.8;
+    margin: 0;
+}
+
+a {
+    color: #000;
+    text-decoration: none;
+}
+
+a:link, a:visited {
+    color: #000;
+}
+
+a:hover {
+    color: #4a4a4a;
+}
+h1{
+    max-width: 800px;
+    margin: 0;
+    padding: 0 0;
+    font-size: 2em;
+    line-height: 1.2;
+    font-weight: 400;
+    text-transform: uppercase;
+    color: #000;
+}
+h2 {
+    max-width: 800px;
+    margin: 0;
+    padding: 0 0;
+    font-size: 1.3em;
+    line-height: 1.2;
+    font-weight: 400;
+    text-transform: uppercase;
+    color: #000;
+}
+
+h3 {
+    max-width: 800px;
+    margin: 0;
+    padding: 0 0;
+    font-size: 1em;
+    font-weight: 400;
+    color: #000;
+}
+article.post{margin-bottom:50px;}
+.entry-header .entry-title {
+    margin: 1rem 0 1rem;
+    position: relative;
+    max-width: 800px;
+    padding: 0 0;
+    line-height: 1.2;
+    font-weight: 900;
+    text-transform: uppercase;
+    color: #4d4d4d;
+}
+
+
+.page .entry-header .entry-title{
+    font-size: 2em;
+
+}
+
+.post .entry-header .entry-title{
+    font-size:1.3em;
+    font-weight: 400;
+
+}
+
+
+.entry .entry-content, .entry .entry-summary {
+
+}
+
+.entry .entry-content > *, .entry .entry-summary > * {
+    margin: 15px 0;
+    max-width: 100%;
+}
+
+.site {
+    margin: 0 auto;
+    max-width: 900px;
+    padding: 0 10px;
+}
+
+.skip-link {
+    display: none;
+}
+
+.entry-content a {
+    text-decoration: underline;
+}
+
+.entry-content img,.attachment-post-thumbnail{
+    border: 13px solid #e8e8e8;
+    max-width: 100%;
+}
+figure{margin:0;}
+
+.wp-block-image figcaption{font-size: 15px;}
+.has-small-font-size{font-size: 16px;}
+
+.icon{
+    position:relative;
+}
+.icon:before{
+    content: '';
+    position: absolute;
+    width: 35px;
+    height: 35px;
+    top: -4px;
+    left: 0;
+
+}
+.whatsapp{
+    padding-left: 38px;
+    color: #49c658;
+    margin-left:10px;
+    font-weight:bold;
+}
+.whatsapp:before{
+    background-image:url('img/whatsapp.png');
+}
+.quote{
+    padding-left: 38px;
+    color: #ee2f25;
+    font-weight:bold;
+}
+.quote:before{
+    background-image:url('img/quote.png');
+}
+
+
+
+.attachment-post-thumbnail{
+    width:100%;
+    height:auto;
+}
+footer{
+    margin-top:30px;
+}
+.menu-footer-container ul{
+    margin:0;
+    padding:0;
+}
+.menu-footer-container ul li{
+    list-style:none;
+    display:inline-block;
+    padding:0;
+    margin:0;
+}
+
+.menu-footer-container ul li a{
+    padding: 10px;
+    font-weight: 100;
+    display: inline-block;
+    color: #000;
+    text-transform: uppercase;
+    font-size:.7em;
+}
+
+.menu-footer-container ul li:first-child a{padding-left:0;}
+
+@media only screen and (max-width: 768px) {
+    body {
+        font-size: 1.3em;
+    }
+
+    .site-main {
+        padding: 0 0px;
+    }
+}
+

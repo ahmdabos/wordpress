@@ -1,0 +1,261 @@
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Contact Form\n"
+"POT-Creation-Date: 2019-07-14 00:18+0200\n"
+"PO-Revision-Date: 2015-08-14 23:18+0200\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 2.2.2\n"
+"X-Poedit-Basepath: ..\n"
+"X-Poedit-WPHeader: contactform.php\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-KeywordsList: __;_e;_n:1,2;_x:1,2c;_ex:1,2c;_nx:4c,1,2;esc_attr__;"
+"esc_attr_e;esc_attr_x:1,2c;esc_html__;esc_html_e;esc_html_x:1,2c;"
+"_n_noop:1,2;_nx_noop:3c,1,2;__ngettext_noop:1,2\n"
+"X-Poedit-SearchPath-0: .\n"
+"X-Poedit-SearchPathExcluded-0: *.js\n"
+
+#: contactform-labels.php:30 contactform-options.php:43 contactform-options.php:155 contactform.php:61
+msgid "Name"
+msgstr ""
+
+#: contactform-labels.php:42 contactform-options.php:17 contactform-options.php:46
+#: contactform-options.php:161 contactform.php:62
+msgid "Email"
+msgstr ""
+
+#: contactform-labels.php:54 contactform-options.php:26 contactform-options.php:49
+#: contactform-options.php:167
+msgid "Subject"
+msgstr ""
+
+#: contactform-labels.php:66 contactform-options.php:173
+#, php-format
+msgid "Enter number %s"
+msgstr ""
+
+#: contactform-labels.php:78 contactform-options.php:55 contactform-options.php:179
+msgid "Message"
+msgstr ""
+
+#: contactform-labels.php:90 contactform-options.php:185
+msgid ""
+"I consent to having this website collect my personal data via this form."
+msgstr ""
+
+#: contactform-labels.php:102 contactform-options.php:61 contactform-options.php:191
+msgid "Submit"
+msgstr ""
+
+#: contactform-labels.php:114 contactform-labels.php:138 contactform-options.php:197
+#: contactform-options.php:209
+msgid "Please enter at least 2 characters"
+msgstr ""
+
+#: contactform-labels.php:126 contactform-options.php:203
+msgid "Please enter a valid email"
+msgstr ""
+
+#: contactform-labels.php:150 contactform-options.php:215
+msgid "Please enter the correct number"
+msgstr ""
+
+#: contactform-labels.php:162 contactform-options.php:221
+msgid "Please enter at least 10 characters"
+msgstr ""
+
+#: contactform-labels.php:174 contactform-options.php:227
+msgid "Error! Could not send form. This might be a server issue."
+msgstr ""
+
+#: contactform-labels.php:186 contactform-labels.php:198 contactform-options.php:233
+#: contactform-options.php:239
+msgid "Thank you! You will receive a response as soon as possible."
+msgstr ""
+
+#: contactform-options.php:9
+msgid "CONTACTFORM"
+msgstr ""
+
+#: contactform-options.php:15 contactform-options.php:256
+msgid "General"
+msgstr ""
+
+#: contactform-options.php:20
+msgid "Uninstall"
+msgstr ""
+
+#: contactform-options.php:23 contactform.php:43
+msgid "Submissions"
+msgstr ""
+
+#: contactform-options.php:29
+msgid "Reply"
+msgstr ""
+
+#: contactform-options.php:32 contactform-options.php:35 contactform-options.php:58
+msgid "Privacy"
+msgstr ""
+
+#: contactform-options.php:38
+msgid "Anchor"
+msgstr ""
+
+#: contactform-options.php:41 contactform-options.php:257
+msgid "Labels"
+msgstr ""
+
+#: contactform-options.php:52
+msgid "Captcha"
+msgstr ""
+
+#: contactform-options.php:64
+msgid "Name error"
+msgstr ""
+
+#: contactform-options.php:67
+msgid "Email error"
+msgstr ""
+
+#: contactform-options.php:70
+msgid "Subject error"
+msgstr ""
+
+#: contactform-options.php:73
+msgid "Captcha error"
+msgstr ""
+
+#: contactform-options.php:76
+msgid "Message error"
+msgstr ""
+
+#: contactform-options.php:79 contactform-options.php:258
+msgid "Messages"
+msgstr ""
+
+#: contactform-options.php:81
+msgid "Server error message"
+msgstr ""
+
+#: contactform-options.php:84
+msgid "Thank you message"
+msgstr ""
+
+#: contactform-options.php:87
+msgid "Reply message"
+msgstr ""
+
+#: contactform-options.php:102
+msgid "Do not delete form submissions and settings."
+msgstr ""
+
+#: contactform-options.php:110
+msgid "List form submissions in dashboard."
+msgstr ""
+
+#: contactform-options.php:118
+msgid "Disable subject field."
+msgstr ""
+
+#: contactform-options.php:126
+msgid "Activate confirmation email to sender."
+msgstr ""
+
+#: contactform-options.php:134
+msgid "Activate privacy consent checkbox on form."
+msgstr ""
+
+#: contactform-options.php:142
+msgid "Disable collection of IP address."
+msgstr ""
+
+#: contactform-options.php:150
+msgid "Scroll back to form position after submit."
+msgstr ""
+
+#: contactform-options.php:243
+msgid "Displayed in the confirmation email to sender."
+msgstr ""
+
+#. Plugin Name of the plugin/theme
+#: contactform-options.php:251 contactform-widget.php:11 contactform-widget.php:21
+msgid "Contact Form"
+msgstr ""
+
+#: contactform-options.php:273
+msgid "More customizations can be made by using (shortcode) attributes."
+msgstr ""
+
+#: contactform-options.php:274 contactform-widget.php:37
+msgid "click here"
+msgstr ""
+
+#: contactform-options.php:276 contactform-widget.php:40
+#, php-format
+msgid "For info, available attributes and support %s."
+msgstr ""
+
+#: contactform-submission.php:40
+msgid "Yes"
+msgstr ""
+
+#: contactform-submission.php:42
+msgid "No"
+msgstr ""
+
+#: contactform-submission.php:48
+#, php-format
+msgid "IP: %s"
+msgstr ""
+
+#: contactform-submission.php:54 contactform-submission.php:62
+#, php-format
+msgid "Privacy consent: %s"
+msgstr ""
+
+#: contactform-widget.php:10
+msgid "Display your contact form in a widget."
+msgstr ""
+
+#: contactform-widget.php:26
+msgid "Title"
+msgstr ""
+
+#: contactform-widget.php:30
+msgid "Text above form"
+msgstr ""
+
+#: contactform-widget.php:34
+msgid "Attributes"
+msgstr ""
+
+#: contactform-widget.php:35
+msgid "Example: email_to=&quot;your-email-here&quot;"
+msgstr ""
+
+#: contactform-widget.php:41
+#, php-format
+msgid "For plugin settings %s."
+msgstr ""
+
+#: contactform.php:120
+msgid "Settings"
+msgstr ""
+
+#. Description of the plugin/theme
+msgid ""
+"This is a lightweight plugin to create a customized contact form. Add "
+"shortcode [contact] on a page or use the widget to display your form."
+msgstr ""
+
+#. Author of the plugin/theme
+msgid "Guido"
+msgstr ""
+
+#. Author URI of the plugin/theme
+msgid "https://www.guido.site"
+msgstr ""

@@ -1,5 +1,4 @@
 <?php
-
 // Register Custom Post Type
 function car_post_type()
 {
@@ -48,5 +47,4 @@ function car_post_type()
     register_post_type('car', $args);
 
 }
-
 add_action('init', 'car_post_type', 0);
