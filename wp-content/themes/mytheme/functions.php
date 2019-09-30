@@ -310,3 +310,7 @@ function filter_search_callback()
 
 add_action('wp_ajax_filter_search', 'filter_search_callback');
 add_action('wp_ajax_nopriv_filter_search', 'filter_search_callback');
+
+
+
+
