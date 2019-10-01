@@ -16,13 +16,6 @@
     <div class="entry-content">
         <?php the_content(); ?>
     </div><!-- .entry-content -->
-    <?php
-    $year = get_post_meta(get_the_ID(), 'car_year', true);
-
-    if (!empty($year)) {
-        echo '<h3>Year: ' . $year . '<h3>';
-    }
-    ?>
     <footer class="entry-footer">
         <h3> Categories: <?php the_category() ?></h3>
         <h3>Tags: <?php the_tags() ?></h3>

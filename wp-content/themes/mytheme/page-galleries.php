@@ -3,7 +3,7 @@ get_header();
 ?>
     <main>
         <?php
-        get_template_part('template-parts/content', 'car');
+        get_template_part('template-parts/content', 'gallery');
         ?>
     </main>
 <?php

@@ -6,7 +6,7 @@ get_header();
         <?php
         while (have_posts()) :
             the_post();
-            get_template_part('template-parts/content', 'single-car');
+            get_template_part('template-parts/content', 'single-gallery');
         endwhile;
         ?>
     </main>
