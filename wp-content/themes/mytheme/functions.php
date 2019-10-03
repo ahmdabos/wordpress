@@ -316,27 +316,35 @@ add_action('wp_ajax_nopriv_filter_search', 'filter_search_callback');
 
 
 
-
-function get_post_block_galleries_images( $post_id ) {
-    $content = get_post_field( 'post_content', $post_id );
-    $srcs = [];
-
-    $i = -1;
-    foreach ( parse_blocks( $content ) as $block ) {
-        if ( 'core/gallery' === $block['blockName'] ) {
-            $i++;
-            $srcs[ $i ] = [];
-
-            preg_match_all( '#src=([\'"])(.+?)\1#is', $block['innerHTML'], $src, PREG_SET_ORDER );
-            if ( ! empty( $src ) ) {
-                foreach ( $src as $s ) {
-                    $srcs[ $i ][] = $s[2];
-                }
-            }
-        }
+function bm_get_post_gallery( $gallery, $post ) {
+    // Already found a gallery so lets quit.
+    if ( $gallery ) {
+        return $gallery;
+    }
+    // Check the post exists.
+    $post = get_post( $post );
+    if ( ! $post ) {
+        return $gallery;
+    }
+    // Not using Gutenberg so let's quit.
+    if ( ! function_exists( 'has_blocks' ) ) {
+        return $gallery;
+    }
+    // Not using blocks so let's quit.
+    if ( ! has_blocks( $post->post_content ) ) {
+        return $gallery;
     }
 
-    return $srcs;
+    $pattern = "/<!--\ wp:gallery.*-->([\s\S]*?)<!--\ \/wp:gallery -->/i";
+    preg_match_all( $pattern, $post->post_content, $the_galleries );
+    // Check a gallery was found and if so change the gallery html.
+    if ( ! empty( $the_galleries[1] ) ) {
+
+        $gallery = reset( $the_galleries[1] );
+        echo $gallery;
+    }
+    return $gallery;
 }
+add_filter( 'get_post_gallery', 'bm_get_post_gallery', 10, 2 );
 
 
