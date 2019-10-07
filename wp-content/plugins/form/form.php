@@ -1,7 +1,7 @@
 <?php
 /*
  * Plugin Name: Form
- * Description: shortcode [contact]
+ * Description: shortcode [form]
  * Version: 1.0.0
  * Author: fi
  * Text Domain: form
