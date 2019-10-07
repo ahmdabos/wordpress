@@ -1,10 +1,10 @@
 <?php
 /*
- * Plugin Name: Contact Form
+ * Plugin Name: Form
  * Description: shortcode [contact]
  * Version: 1.0.0
  * Author: fi
- * Text Domain: very-simple-contact-form
+ * Text Domain: form
  * Domain Path: /translation
  */
 
@@ -14,30 +14,30 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 // load plugin text domain
-function vscf_init() {
-	load_plugin_textdomain( 'very-simple-contact-form', false, dirname( plugin_basename( __FILE__ ) ) . '/translation' );
+function form_init() {
+	load_plugin_textdomain( 'form', false, dirname( plugin_basename( __FILE__ ) ) . '/translation' );
 }
-add_action('plugins_loaded', 'vscf_init');
+add_action('plugins_loaded', 'form_init');
 
 // enqueue plugin scripts
-function vscf_scripts() {
-	wp_enqueue_style('vscf_style', plugins_url('/css/vscf-style.min.css',__FILE__));
+function form_scripts() {
+	wp_enqueue_style('form_style', plugins_url('/css/form-style.min.css',__FILE__));
 }
-add_action('wp_enqueue_scripts', 'vscf_scripts');
+add_action('wp_enqueue_scripts', 'form_scripts');
 
 // the sidebar widget
-function register_vscf_widget() {
-	register_widget( 'vscf_widget' );
+function register_form_widget() {
+	register_widget( 'form_widget' );
 }
-add_action( 'widgets_init', 'register_vscf_widget' );
+add_action( 'widgets_init', 'register_form_widget' );
 
 // form submissions
-$list_submissions_setting = get_option('vscf-setting-2');
+$list_submissions_setting = get_option('form-setting-2');
 if ($list_submissions_setting == "yes") {
 	// create submission post type
-	function vscf_custom_postype() {
-		$vscf_args = array(
-			'labels' => array('name' => esc_attr__( 'Submissions', 'very-simple-contact-form' )),
+	function form_custom_postype() {
+		$form_args = array(
+			'labels' => array('name' => esc_attr__( 'Submissions', 'form' )),
 			'menu_icon' => 'dashicons-email',
 			'public' => false,
 			'can_export' => true,
@@ -49,24 +49,24 @@ if ($list_submissions_setting == "yes") {
 			'map_meta_cap' => true,
  			'supports' => array( 'title', 'editor' )
 		);
-		register_post_type( 'submission', $vscf_args );
+		register_post_type( 'submission', $form_args );
 	}
-	add_action( 'init', 'vscf_custom_postype' );
+	add_action( 'init', 'form_custom_postype' );
 
 	// dashboard submission columns
-	function vscf_custom_columns( $columns ) {
-		$columns['name_column'] = esc_attr__( 'Name', 'very-simple-contact-form' );
-		$columns['email_column'] = esc_attr__( 'Email', 'very-simple-contact-form' );
-        $columns['message_column'] = esc_attr__( 'Message', 'very-simple-contact-form' );
+	function form_custom_columns( $columns ) {
+		$columns['name_column'] = esc_attr__( 'Name', 'form' );
+		$columns['email_column'] = esc_attr__( 'Email', 'form' );
+        $columns['message_column'] = esc_attr__( 'Message', 'form' );
 		$custom_order = array('cb', 'title', 'name_column', 'email_column','message_column', 'date');
 		foreach ($custom_order as $colname) {
 			$new[$colname] = $columns[$colname];
 		}
 		return $new;
 	}
-	add_filter( 'manage_submission_posts_columns', 'vscf_custom_columns', 10 );
+	add_filter( 'manage_submission_posts_columns', 'form_custom_columns', 10 );
 
-	function vscf_custom_columns_content( $column_name, $post_id ) {
+	function form_custom_columns_content( $column_name, $post_id ) {
 		if ( 'name_column' == $column_name ) {
 			$name = get_post_meta( $post_id, 'name_sub', true );
 			echo $name;
@@ -80,17 +80,17 @@ if ($list_submissions_setting == "yes") {
             echo $message;
         }
 	}
-	add_action( 'manage_submission_posts_custom_column', 'vscf_custom_columns_content', 10, 2 );
+	add_action( 'manage_submission_posts_custom_column', 'form_custom_columns_content', 10, 2 );
 
 	// make name and email column sortable
-	function vscf_column_register_sortable( $columns ) {
+	function form_column_register_sortable( $columns ) {
 		$columns['name_column'] = 'name_sub';
 		$columns['email_column'] = 'email_sub';
 		return $columns;
 	}
-	add_filter( 'manage_edit-submission_sortable_columns', 'vscf_column_register_sortable' );
+	add_filter( 'manage_edit-submission_sortable_columns', 'form_column_register_sortable' );
 
-	function vscf_name_column_orderby( $vars ) {
+	function form_name_column_orderby( $vars ) {
 		if(is_admin()) {
 			if ( isset( $vars['orderby'] ) && 'name_sub' == $vars['orderby'] ) {
 				$vars = array_merge( $vars, array(
@@ -101,9 +101,9 @@ if ($list_submissions_setting == "yes") {
 		}
 		return $vars;
 	}
-	add_filter( 'request', 'vscf_name_column_orderby' );
+	add_filter( 'request', 'form_name_column_orderby' );
 
-	function vscf_email_column_orderby( $vars ) {
+	function form_email_column_orderby( $vars ) {
 		if(is_admin()) {
 			if ( isset( $vars['orderby'] ) && 'email_sub' == $vars['orderby'] ) {
 				$vars = array_merge( $vars, array(
@@ -114,18 +114,18 @@ if ($list_submissions_setting == "yes") {
 		}
 		return $vars;
 	}
-	add_filter( 'request', 'vscf_email_column_orderby' );
+	add_filter( 'request', 'form_email_column_orderby' );
 }
 
 // add settings link
-function vscf_action_links ( $links ) {
-	$settingslink = array( '<a href="'. admin_url( 'options-general.php?page=vscf' ) .'">'. esc_attr__('Settings', 'very-simple-contact-form') .'</a>' );
+function form_action_links ( $links ) {
+	$settingslink = array( '<a href="'. admin_url( 'options-general.php?page=form' ) .'">'. esc_attr__('Settings', 'form') .'</a>' );
 	return array_merge( $links, $settingslink );
 }
-add_filter( 'plugin_action_links_' . plugin_basename(__FILE__), 'vscf_action_links' );
+add_filter( 'plugin_action_links_' . plugin_basename(__FILE__), 'form_action_links' );
 
 // get ip of user
-function vscf_get_the_ip() {
+function form_get_the_ip() {
 	if (isset($_SERVER["HTTP_X_FORWARDED_FOR"])) {
 		return $_SERVER["HTTP_X_FORWARDED_FOR"];
 	} elseif (isset($_SERVER["HTTP_CLIENT_IP"])) {
@@ -136,7 +136,7 @@ function vscf_get_the_ip() {
 }
 
 // create from email header
-function vscf_from_header() {
+function form_from_header() {
 	if ( !isset( $from_email ) ) {
 		$sitename = strtolower( $_SERVER['SERVER_NAME'] );
 		if ( substr( $sitename, 0, 4 ) == 'www.' ) {
@@ -147,87 +147,87 @@ function vscf_from_header() {
 }
 
 // create random number for page captcha
-function vscf_random_number() {
+function form_random_number() {
 	$page_number = mt_rand(100, 999);
 	return $page_number;
 }
 
 // create random number for widget captcha
-function vscf_widget_random_number() {
+function form_widget_random_number() {
 	$widget_number = mt_rand(100, 999);
 	return $widget_number;
 }
 
 // redirect if sending succeeded
-function vscf_redirect_success() {
+function form_redirect_success() {
 	$current_url = $_SERVER['REQUEST_URI'];
 	if (strpos($current_url, '?') == true) {
-		$url_with_param = $current_url."&vscfsp=success";
+		$url_with_param = $current_url."&formsp=success";
 	} else {
 		if (substr($current_url, -1) == '/') {
-			$url_with_param = $current_url."?vscfsp=success";
+			$url_with_param = $current_url."?formsp=success";
 		} else {
-			$url_with_param = $current_url."/?vscfsp=success";
+			$url_with_param = $current_url."/?formsp=success";
 		}
 	}
 	return $url_with_param;
 }
 
-function vscf_widget_redirect_success() {
+function form_widget_redirect_success() {
 	$current_url = $_SERVER['REQUEST_URI'];
 	if (strpos($current_url, '?') == true) {
-		$url_with_param = $current_url."&vscfsw=success";
+		$url_with_param = $current_url."&formsw=success";
 	} else {
 		if (substr($current_url, -1) == '/') {
-			$url_with_param = $current_url."?vscfsw=success";
+			$url_with_param = $current_url."?formsw=success";
 		} else {
-			$url_with_param = $current_url."/?vscfsw=success";
+			$url_with_param = $current_url."/?formsw=success";
 		}
 	}
 	return $url_with_param;
 }
 
 // redirect if sending failed
-function vscf_redirect_error() {
+function form_redirect_error() {
 	$current_url = $_SERVER['REQUEST_URI'];
 	if (strpos($current_url, '?') == true) {
-		$url_with_param = $current_url."&vscfsp=fail";
+		$url_with_param = $current_url."&formsp=fail";
 	} else {
 		if (substr($current_url, -1) == '/') {
-			$url_with_param = $current_url."?vscfsp=fail";
+			$url_with_param = $current_url."?formsp=fail";
 		} else {
-			$url_with_param = $current_url."/?vscfsp=fail";
+			$url_with_param = $current_url."/?formsp=fail";
 		}
 	}
 	return $url_with_param;
 }
 
-function vscf_widget_redirect_error() {
+function form_widget_redirect_error() {
 	$current_url = $_SERVER['REQUEST_URI'];
 	if (strpos($current_url, '?') == true) {
-		$url_with_param = $current_url."&vscfsw=fail";
+		$url_with_param = $current_url."&formsw=fail";
 	} else {
 		if (substr($current_url, -1) == '/') {
-			$url_with_param = $current_url."?vscfsw=fail";
+			$url_with_param = $current_url."?formsw=fail";
 		} else {
-			$url_with_param = $current_url."/?vscfsw=fail";
+			$url_with_param = $current_url."/?formsw=fail";
 		}
 	}
 	return $url_with_param;
 }
 
 // form anchor
-function vscf_anchor_footer() {
-	$anchor_setting = get_option('vscf-setting-21');
+function form_anchor_footer() {
+	$anchor_setting = get_option('form-setting-21');
 	if ($anchor_setting == "yes") {
 		echo '<script type="text/javascript">';
-		echo 'if(document.getElementById("vscf-anchor")) { document.getElementById("vscf-anchor").scrollIntoView({behavior:"smooth", block:"center"}); }';
+		echo 'if(document.getElementById("form-anchor")) { document.getElementById("form-anchor").scrollIntoView({behavior:"smooth", block:"center"}); }';
 		echo '</script>';
 	}
 }
-add_action('wp_footer', 'vscf_anchor_footer');
+add_action('wp_footer', 'form_anchor_footer');
 
 // include files
-include 'vscf-shortcodes.php';
-include 'vscf-widget.php';
-include 'vscf-options.php';
+include 'form-shortcodes.php';
+include 'form-widget.php';
+include 'form-options.php';

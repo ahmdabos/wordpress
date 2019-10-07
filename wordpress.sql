@@ -263,7 +263,7 @@ INSERT INTO `wp_options` (`option_id`, `option_name`, `option_value`, `autoload`
 (120, '_site_transient_update_themes', 'O:8:\"stdClass\":4:{s:12:\"last_checked\";i:1570083802;s:7:\"checked\";a:4:{s:7:\"mytheme\";s:5:\"1.0.0\";s:14:\"twentynineteen\";s:3:\"1.4\";s:15:\"twentyseventeen\";s:3:\"2.2\";s:13:\"twentysixteen\";s:3:\"2.0\";}s:8:\"response\";a:0:{}s:12:\"translations\";a:0:{}}', 'no'),
 (594, 'vsz_cf7_db_version', '1.7.2', 'yes'),
 (604, 'core_updater.lock', '1569832426', 'no'),
-(381, 'widget_vscf-widget', 'a:1:{s:12:\"_multiwidget\";i:1;}', 'yes'),
+(381, 'widget_form-widget', 'a:1:{s:12:\"_multiwidget\";i:1;}', 'yes'),
 (127, 'can_compress_scripts', '1', 'no'),
 (657, '_transient_timeout_feed_mod_9bbd59226dc36b9b26cd43f15694c5c3', '1570127005', 'no'),
 (658, '_transient_feed_mod_9bbd59226dc36b9b26cd43f15694c5c3', '1570083805', 'no'),

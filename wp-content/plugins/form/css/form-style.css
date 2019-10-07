@@ -1,0 +1,44 @@
+/* For reference only - plugin loads the minified CSS file */
+
+/* Form stylesheet */
+
+/* Form */
+#form {clear:both;}
+#form:after {content:''; display:block; height:0; clear:both;}
+.form-container {}
+
+/* Form anchor */
+#form-anchor {clear:both;}
+
+/* Form elements */
+#form .form-group {clear:both; margin-bottom:15px;}
+#form .form-group label {margin-bottom:5px; display:block;}
+#form .form-group input[type="text"], #form .form-group input[type="email"] {width:70%; font-family:inherit; font-size:1em;}
+#form .form-group textarea {width:90%; font-family:inherit; font-size:1em;}
+#form .form-group button {font-family:inherit; font-size:1em;}
+.form-name-group {}
+.form-email-group {}
+.form-subject-group {}
+.form-captcha-group {}
+.form-message-group {}
+.form-privacy-group {}
+.form-submit-group {}
+
+/* Error */
+#form .form-error {border-color:#ff0000; color:#ff0000;}
+
+/* Hide elements */
+#form .form-hide {display:none;}
+
+/* Success or fail message */
+.form-info {font-style:italic; font-size:1.20em;}
+
+/* Widget */
+.form-widget {clear:both;}
+.form-widget:after {content:''; display:block; height:0; clear:both;}
+
+/* Widget text above form */
+.form-widget-text {clear:both;}
+
+/* Fix for privacy consent checkbox when using Bootstrap */
+#form .form-group .custom-control-input {position:static; z-index:auto; opacity:1;}

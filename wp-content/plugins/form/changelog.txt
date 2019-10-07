@@ -2,8 +2,8 @@ CHANGELOG
 =========
 
 = Version 10.8 =
-* Removed files vscf-page-shortcode and vscf-widget-shortcode
-* Added file vscf-shortcodes instead
+* Removed files form-page-shortcode and form-widget-shortcode
+* Added file form-shortcodes instead
 
 = Version 10.7 =
 * Re-added attribute to change the prefix of the email subject
@@ -48,10 +48,10 @@ CHANGELOG
 * Use "maxlength_textarea" to change the default 5000 characters of text area
 
 = Version 9.8 =
-* Added new CSS class to form: vscf-container
+* Added new CSS class to form: form-container
 * Added attribute to change this CSS class per form
 * This can be useful if you want to apply different styling when having multiple forms
-* If you have used class "vscf" in your custom CSS, you should change this into class "vscf-container"
+* If you have used class "form" in your custom CSS, you should change this into class "form-container"
 * Have changed this class because ID was the same (to avoid confusion)
 * Increased max character length of inputs
 * Fix: removed maxlength attribute from hidden input (thanks malae)
@@ -76,10 +76,10 @@ CHANGELOG
 * Thanks rermis for informing me
 * Form gets the query string parameters via the GET method now
 * New query string parameters for page and widget
-* Thank you: when using the shortcode it's "vscfsp=success" and when using the widget it's "vscfsw=success"
-* Server error: when using the shortcode it's "vscfsp=fail" and when using the widget it's "vscfsw=fail"
-* Changed CSS class "vscf-sidebar" into "vscf-widget"
-* Changed CSS class "vscf-sidebar-text" into "vscf-widget-text"
+* Thank you: when using the shortcode it's "formsp=success" and when using the widget it's "formsw=success"
+* Server error: when using the shortcode it's "formsp=fail" and when using the widget it's "formsw=fail"
+* Changed CSS class "form-sidebar" into "form-widget"
+* Changed CSS class "form-sidebar-text" into "form-widget-text"
 * Changed both classes because of relevance
 * I will remove the old classes in next update
 
@@ -91,10 +91,10 @@ CHANGELOG
 * Rebuild the process after form is processed (thanks Arjan)
 * The thank you message is now generated via JavaScript
 * And a query string parameter is added to the URL of your contact page
-* When using the shortcode it's "vscfsp=true" and when using the widget it's "vscfsw=true"
+* When using the shortcode it's "formsp=true" and when using the widget it's "formsw=true"
 * This can be useful when using a website statistics / analytics program
 * The same applies to the server error message
-* When using the shortcode it's "vscfep=true" and when using the widget it's "vscfew=true"
+* When using the shortcode it's "formep=true" and when using the widget it's "formew=true"
 * The capcha has been simplyfied, because it's not using a PHP session anymore
 * It now changes every day, instead of every session
 * Added setting to change admin email address
@@ -105,7 +105,7 @@ CHANGELOG
 * Removed unnecessary whitespaces from most files
 
 = Version 9.1 =
-* File vscf-style: removed reset CSS from the #vscf container
+* File form-style: removed reset CSS from the #form container
 * Did this to avoid a conflict with Twenty Nineteen theme
 * Added new icon for form submissions in dashboard
 * Some textual changes
@@ -115,17 +115,17 @@ CHANGELOG
 * The captcha is currently the only way to avoid resubmitting form upon page refresh
 * The alternative captcha wasn't able to avoid this
 * Have made file structure more clear
-* So added files vscf-page-shortcode and vscf-widget-shortcode
+* So added files form-page-shortcode and form-widget-shortcode
 * These 2 files contain the shortcode for page and widget
-* And file vscf-form now only contains the html form itself
-* Removed file vscf-widget-form
-* Changed CSS class "error" and "hide" into "vscf-error" and "vscf-hide"
+* And file form-form now only contains the html form itself
+* Removed file form-widget-form
+* Changed CSS class "error" and "hide" into "form-error" and "form-hide"
 * Added prefix to both classes to avoid unexpected CSS being added from your theme or other plugins
 * Fix in text domain
 * Removed unnecessary notifications from changelog (such as "updated readme file" and "updated FAQ")
 
 = Version 8.9 =
-* Added files vscf-validate and vscf-submission
+* Added files form-validate and form-submission
 * Relocated validation and sending & saving from shortcode files to these 2 new files
 * New setting: captcha without using a PHP session
 * This is less secure. use this if default captcha is not working properly
@@ -133,12 +133,12 @@ CHANGELOG
 * Some textual changes (thanks Tom)
 
 = Version 8.8 =
-* Fix: captcha in file vscf-widget-form
+* Fix: captcha in file form-widget-form
 
 = Version 8.7 =
 * Request: added (shortcode) attributes for all field labels and form messages again
 * Using an attribute will always override its corresponding settingspage field
-* Added file vscf-labels (relocated labels from shortcode files to this new file)
+* Added file form-labels (relocated labels from shortcode files to this new file)
 * Added stripslashes() and htmlspecialchars_decode() filter for form and form submission
 * Now unexpected backslashes are removed when using single or double quote
 * And certain HTML entities are converted to normal characters
@@ -156,7 +156,7 @@ CHANGELOG
 
 = Version 8.4 =
 * Added Bootstrap CSS class to privacy consent checkbox
-* Minor change in file vscf-style
+* Minor change in file form-style
 
 = Version 8.3 =
 * New: disable the collection of ip address (thanks Marie)
@@ -165,7 +165,7 @@ CHANGELOG
 = Version 8.2 =
 * Removed the capability to create new submission in dashboard
 * Changed the id of name and email column on submissions page
-* Updated file vscf
+* Updated file form
 
 = Version 8.1 =
 * Some textual changes on settingspage
@@ -192,7 +192,7 @@ CHANGELOG
 
 = Version 7.6 =
 * Textual change in widget (forgot to add this in previous update)
-* Updated file vscf-widget
+* Updated file form-widget
 
 = Version 7.5 =
 * New: you can now list form submissions in your dashboard
@@ -203,7 +203,7 @@ CHANGELOG
 * Updated most files
 
 = Version 7.4 =
-* File vscf-widget-form: fixed mistake in resetting captcha (thanks malae) 
+* File form-widget-form: fixed mistake in resetting captcha (thanks malae)
 
 = Version 7.3 =
 * Removed attribute to change default email subject prefix: prefix_subject
@@ -211,8 +211,8 @@ CHANGELOG
 * Have removed this to avoid confusion while setting up a custom email subject
 
 = Version 7.2 =
-* Updated file vscf-style
-* Files vscf-form and vscf-widget-form: added escaping to empty variables
+* Updated file form-style
+* Files form-form and form-widget-form: added escaping to empty variables
 
 = Version 7.1 =
 * New: attribute to change default email subject prefix: prefix_subject
@@ -220,13 +220,13 @@ CHANGELOG
 * Thanks startover909
 
 = Version 7.0 =
-* Minor change in files vscf-form and vscf-widget-form
+* Minor change in files form-form and form-widget-form
 
 = Version 6.9 =
 * Form now supports Bootstrap CSS
 * This means I have added Bootstrap CSS classes
-* Updated files vscf-form and vscf-widget-form
-* Updated file vscf-style
+* Updated files form-form and form-widget-form
+* Updated file form-style
 
 = Version 6.8 =
 * Best practice: removed closing PHP tag from most files
@@ -238,39 +238,39 @@ CHANGELOG
 = Version 6.6 =
 * New: sender can receive a confirmation by mail after submitting form
 * Added 2 attributes: auto_reply and auto_reply_message
-* Updated files vscf-form and vscf-widget-form
+* Updated files form-form and form-widget-form
 * Added info in readme file about the use of SMTP plugins
 
 = Version 6.5 =
 * Changed the "from" header again to avoid form submissions being marked as spam
 * The "from" header is now a default email that ends with your site domain
 * Also added new attribute to change this email again: from_header
-* Updated files vscf, vscf-form and vscf-widget-form
+* Updated files form, form-form and form-widget-form
 * Thanks again Sanjay and dsl225, much appreciated
 
 = Version 6.4 =
 * Changed the "from" header to avoid form submissions being marked as spam
 * The "from" header is now email from admin
-* Updated files vscf-form and vscf-widget-form
+* Updated files form-form and form-widget-form
 * Thanks Sanjay and dsl225
 
 = Version 6.3 =
 * Fix: double form submission (thanks snikolictech)
-* Updated files vscf-form and vscf-widget-form
+* Updated files form-form and form-widget-form
 
 = Version 6.2 =
 * Improvement: check to determine whether form was sent or not
-* Updated files vscf-form and vscf-widget-form
+* Updated files form-form and form-widget-form
 * Minor textual changes
 
 = Version 6.1 =
 * Both shortcode files: removed error message above form
-* Updated file vscf-style
+* Updated file form-style
 
 = Version 6.0 =
 * Message field and widget information field: save html is allowed
 * Added filter wp_kses_post
-* Updated files vscf-form, vscf-widget-form and vscf-widget
+* Updated files form-form, form-widget-form and form-widget
 * Fixed mistake in text domain
 
 = Version 5.9 =
@@ -278,14 +278,14 @@ CHANGELOG
 * Updated file uninstall
 
 = Version 5.8 =
-* File vscf-widget: fixed PHP 7 error (thanks nx3d)
+* File form-widget: fixed PHP 7 error (thanks nx3d)
 
 = Version 5.7 =
 * Added shortcode attribute to disable subject field
-* File vscf-style: minor changes
+* File form-style: minor changes
 
 = Version 5.6 =
-* Updated files vscf-form and vscf-widget-form (CSS class of input fields)
+* Updated files form-form and form-widget-form (CSS class of input fields)
 
 = Version 5.5 =
 * Only updated readme file
@@ -294,10 +294,10 @@ CHANGELOG
 * Added file changelog
 
 = Version 5.3 =
-* Updated files vscf-form and vscf-widget-form: changed prefix of input name from "form_" into "vscf_"
+* Updated files form-form and form-widget-form: changed prefix of input name from "form_" into "form_"
 * CSS class of widget and info: replaced underscore with hyphen 
-* Updated file vscf-style
-* File vscf-widget: added widget text input to add additional information above widget form
+* Updated file form-style
+* File form-widget: added widget text input to add additional information above widget form
 
 = Version 5.2 =
 * Removed empty action attribute from form tag
@@ -313,41 +313,41 @@ CHANGELOG
 * Updated text strings
 
 = Version 4.8 =
-* Files vscf_main and vscf_widget_form: simplyfied field validation
+* Files form_main and form_widget_form: simplyfied field validation
 * Changed captcha label
-* Relocated file vscf_style to folder /css
-* Updated file vscf_style
+* Relocated file form_style to folder /css
+* Updated file form_style
 
 = Version 4.7 =
 * Added a PayPal donate link
 
 = Version 4.6 =
-* Updated file vscf_settings
-* File vscf_widget: changed label Shortcode Attributes into Attributes, to avoid confusion
+* Updated file form_settings
+* File form_widget: changed label Shortcode Attributes into Attributes, to avoid confusion
 
 = Version 4.5 =
-* Updated file vscf_widget: you can use all shortcode attributes for the widget now
+* Updated file form_widget: you can use all shortcode attributes for the widget now
 
 = Version 4.4 =
 * Removed translations: plugin now supports WordPress language packs
 * Added file uninstall so settings in database are removed when uninstalling plugin
-* Updated files vscf_main and vscf_widget_form
-* File vscf_setting: removed function to set mail header "Sender" because many servers ignore this
+* Updated files form_main and form_widget_form
+* File form_setting: removed function to set mail header "Sender" because many servers ignore this
 
 = Version 4.3 =
 * Fix: captcha
 
 = Version 4.2 =
-* Updated files vscf_main and vscf_widget_form
+* Updated files form_main and form_widget_form
 * Renamed sum_fields: captcha_fields
 * Renamed security_fields: honeypot_fields
 
 = Version 4.1 =
 * Updated data validation and escaping again
-* Text area validation: replaced my own "vscf_sanitize_text_area" with "strip_tags"
+* Text area validation: replaced my own "form_sanitize_text_area" with "strip_tags"
 
 = Version 4.0 =
-* Updated files vscf_main and vscf_widget_form 
+* Updated files form_main and form_widget_form
 * Updated data validation and escaping
 
 = Version 3.9 =
@@ -363,7 +363,7 @@ CHANGELOG
 
 = Version 3.7 =
 * NOTE: in next version I will remove the custom style editor 
-* File vscf_widget: updated PHP constructor and frontend code
+* File form_widget: updated PHP constructor and frontend code
 
 = Version 3.6 =
 * Updated language files
@@ -375,12 +375,12 @@ CHANGELOG
 
 = Version 3.4 =
 * Updated email headers to avoid messages directly going to junk/spam folder: added Reply-To and Return-Path
-* Renamed vscf_sanitize_text_field into vscf_sanitize_text_area
+* Renamed form_sanitize_text_field into form_sanitize_text_area
 * Updated language files
 
 = Version 3.3 =
-* Removed "extract" from files vscf_main and vscf_widget_form
-* Updated code in files vscf_main and vscf_widget_form
+* Removed "extract" from files form_main and form_widget_form
+* Updated code in files form_main and form_widget_form
 * Added Swedish translation (thanks Bo)
 
 = Version 3.2 =
@@ -389,7 +389,7 @@ CHANGELOG
 * Added Italian translation (thanks Antonio)
 
 = Version 3.1 =
-* Cleaned up code in files vscf_main and vscf_widget_form
+* Cleaned up code in files form_main and form_widget_form
 * Added Turkish translation (thanks wordcommerce)
 
 = Version 3.0 =
@@ -403,7 +403,7 @@ CHANGELOG
 
 = Version 2.8 =
 * Form will now use theme styling for input fields and submit button
-* If this is not supported in your theme you can activate plugin styling in file vscf_style
+* If this is not supported in your theme you can activate plugin styling in file form_style
 * Added Estonian translation (thanks Villem)
 
 = Version 2.7 =
@@ -411,13 +411,13 @@ CHANGELOG
 * Replaced all divs with paragraph tags for better form display
 
 = Version 2.6 =
-* Added file vscf_widget_form
+* Added file form_widget_form
 * Fixed bug with widget: now you can use form and widget on same website
 * Updated language files
 
 = Version 2.5 =
-* Added file vscf_widget
-* Added Very Simple Contact Form widget: now you can display form in widget area too
+* Added file form_widget
+* Added Form widget: now you can display form in widget area too
 * Updated language files
 
 = Version 2.4 =
@@ -426,7 +426,7 @@ CHANGELOG
 * Updated language files
 
 = Version 2.3 =
-* Fixed minor coding error in file vscf_main
+* Fixed minor coding error in file form_main
 
 = Version 2.2 =
 * Added Danish language (thanks Borge)
@@ -437,7 +437,7 @@ CHANGELOG
 * Updated language files
 
 = Version 2.0 =
-* Removed function vscf_clean_input and replaced it with native WP function sanitize_text_field
+* Removed function form_clean_input and replaced it with native WP function sanitize_text_field
 * Now all UTF-8 characters are supported
 * Added Catalan translation (thanks Miquel)
 
@@ -446,7 +446,7 @@ CHANGELOG
 * Added FAQ in readme file
 
 = Version 1.8 =
-* Updated function vscf_clean_input
+* Updated function form_clean_input
 * Only allowed: letters (a-z), digits (0-10), space, point, hyphen and comma
 * Added Brazilian Portuguese translation (thanks Gustavo)
 

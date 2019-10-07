@@ -1,4 +1,4 @@
-=== Very Simple Contact Form ===
+=== Form ===
 Contributors: Guido07111975
 Version: 10.8
 License: GNU General Public License v3 or later
@@ -28,7 +28,7 @@ It's also possible to list form submissions in your dashboard.
 After installation add shortcode [contact] on a page or use the widget to display your form.
 
 = Settingspage =
-Via Settings > VSCF you can:
+Via Settings > form you can:
 
 * Change admin email address
 * Keep form submissions and settings when uninstalling plugin
@@ -94,7 +94,7 @@ Examples:
 * Multiple attributes: `email_to="your-email-here" subject="your subject here" class="your-class-here"`
 
 = List form submissions in dashboard =
-Via Settings > VSCF you can activate the listing of form submissions in your dashboard.
+Via Settings > form you can activate the listing of form submissions in your dashboard.
 
 After activation you will notice a new menu item called "Submissions".
 
@@ -117,7 +117,7 @@ If you uninstall plugin via dashboard all form submissions and settings will be 
 
 All posts of the (custom) post type "submission" will be removed.
 
-You can avoid this via Settings > VSCF.
+You can avoid this via Settings > form.
 
 = Question? =
 Please take a look at the FAQ section.
@@ -149,7 +149,7 @@ If plugin isn't translated into this language, language fallback will be English
 = What is the default admin email address? =
 By default form submissions will be send to the email address set in Settings > General.
 
-You can change this via Settings > VSCF or by using an attribute.
+You can change this via Settings > form or by using an attribute.
 
 = What is the default email subject? =
 By default the email subject contains a prefix (the title of your website), followed by the subject that sender has filled in. If subject field is disabled it only contains the prefix (the title of your website).
@@ -197,7 +197,7 @@ Of course, the native WordPress sanitizing and escaping functions are included.
 
 It also contains 2 hidden honeypot fields and a simple numeric captcha.
 
-= Does VSCF meet the conditions of the GDPR? =
+= Does form meet the conditions of the GDPR? =
 The General Data Protection Regulation (GDPR) is a regulation in EU law on data protection and privacy for all individuals within the European Union.
 
 I did my best to meet the conditions of the GDPR:
@@ -222,8 +222,8 @@ Please open a topic in plugin forum.
 
 == Changelog ==
 = Version 10.8 =
-* Removed files vscf-page-shortcode and vscf-widget-shortcode
-* Added file vscf-shortcodes instead
+* Removed files form-page-shortcode and form-widget-shortcode
+* Added file form-shortcodes instead
 
 = Version 10.7 =
 * Re-added attribute to change the prefix of the email subject
@@ -246,11 +246,11 @@ For all versions please check file changelog.
 
 
 == Screenshots ==
-1. Very Simple Contact Form (Twenty Nineteen theme).
-2. Very Simple Contact Form (Twenty Nineteen theme).
-3. Very Simple Contact Form widget (Twenty Nineteen theme).
-4. Very Simple Contact Form widget (dashboard).
-5. Very Simple Contact Form settingspage (dashboard).
-6. Very Simple Contact Form settingspage (dashboard).
-7. Very Simple Contact Form settingspage (dashboard).
-8. Very Simple Contact Form submissions (dashboard).
+1. Form (Twenty Nineteen theme).
+2. Form (Twenty Nineteen theme).
+3. Form widget (Twenty Nineteen theme).
+4. Form widget (dashboard).
+5. Form settingspage (dashboard).
+6. Form settingspage (dashboard).
+7. Form settingspage (dashboard).
+8. Form submissions (dashboard).
