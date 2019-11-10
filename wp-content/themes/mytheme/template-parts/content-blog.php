@@ -17,6 +17,7 @@ $cats = get_categories(array('post_type' => 'post'));
     <input type='submit' value='Filter!'>
 </form>
 <?php
+$date_from = date($_GET['date_from']);
 $args = array(
     'post_type' => 'post',
     'posts_per_page' => 10,
