@@ -98,7 +98,6 @@ function form_shortcode($form_atts) {
 			'form_firstname' => sanitize_text_field($_POST['form_firstname']),
 			'form_lastname' => sanitize_text_field($_POST['form_lastname'])
 		);
-
 		// include validation
 		include 'form-validate.php';
 

@@ -17,7 +17,6 @@ $error_email_label = get_option('form-setting-13');
 $error_subject_label = get_option('form-setting-20');
 $error_captcha_label = get_option('form-setting-14');
 $error_message_label = get_option('form-setting-12');
-
 // get custom messages from settingspage
 $server_error_message = get_option('form-setting-15');
 $thank_you_message = get_option('form-setting-16');

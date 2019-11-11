@@ -60,7 +60,7 @@ if ($error == false) {
     if ($list_submissions_setting == "yes") {
         $form_post_information = array(
             'post_title' => wp_strip_all_tags($subject),
-            'post_content' => $form_data['form_name'] . "\r\n\r\n" . $form_data['form_email'] . "\r\n\r\n" . $form_data['form_message'] . "\r\n\r\n" . sprintf(esc_attr__('Privacy consent: %s', 'form'), $consent) . "\r\n\r\n" . $ip_address,
+            'post_content' => $form_data['form_name'] . "\r\n\r\n" . $form_data['form_email'] . "\r\n\r\n" . $form_data['form_message'] . "\r\n\r\n" . sprintf(esc_attr__('Privacy consent: %s', 'form'), $consent) . "\r\n\r\n" . $ip_address . "\r\n\r\n" . $my_custom_filename,
             'post_type' => 'submission',
             'post_status' => 'pending',
             'meta_input' => array("name_sub" => $form_data['form_name'], "email_sub" => $form_data['form_email'], "message_sub" => $form_data['form_message'])
@@ -68,7 +68,7 @@ if ($error == false) {
         $post_id = wp_insert_post($form_post_information);
     }
     // mail
-    $content = $form_data['form_name'] . "\r\n\r\n" . $form_data['form_email'] . "\r\n\r\n" . $form_data['form_message'] . "\r\n\r\n" . sprintf(esc_attr__('Privacy consent: %s', 'form'), $consent) . "\r\n\r\n" . $ip_address;
+    $content = $form_data['form_name'] . "\r\n\r\n" . $form_data['form_email'] . "\r\n\r\n" . $form_data['form_message'] . "\r\n\r\n" . sprintf(esc_attr__('Privacy consent: %s', 'form'), $consent) . "\r\n\r\n" . $ip_address . "\r\n\r\n" . $my_custom_filename;
     $headers = "Content-Type: text/plain; charset=UTF-8" . "\r\n";
     $headers .= "From: " . $form_data['form_name'] . " <" . $from . ">" . "\r\n";
     $headers .= "Reply-To: <" . $form_data['form_email'] . ">" . "\r\n";
