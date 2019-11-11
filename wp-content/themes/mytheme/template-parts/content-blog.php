@@ -1,12 +1,11 @@
-
 <?php
 global $wp_query;
 $cats = get_categories(array('post_type' => 'post'));
 ?>
 <form class='post-filters'>
-    <input type="text" name="search" value="" placeholder="Search"/>
-    <input type="text" name="from_date" value="" id="date_from"/>
-    <input type="text" name="to_date" value="" id="date_to"/>
+    <input type="text" name="search" value="<?php echo $_GET['search']?>" placeholder="Search"/>
+    <input type="text" name="from_date" value="<?php echo $_GET['from_date']?>" id="from_date"/>
+    <input type="text" name="to_date" value="<?php echo $_GET['to_date']?>" id="to_date"/>
     <select name="category">
         <?php
         foreach ($cats as $category) {
@@ -17,30 +16,39 @@ $cats = get_categories(array('post_type' => 'post'));
     <input type='submit' value='Filter!'>
 </form>
 <?php
-$date_from = date($_GET['date_from']);
+$from_date = strtotime(date($_GET['from_date']));
+$from_year = date("Y", $from_date) ;
+$from_month = date("m", $from_date);
+$from_day = date("d", $from_date);
+$to_date = strtotime(date($_GET['to_date']));
+$to_year = date("Y", $to_date) ;
+$to_month = date("m", $to_date);
+$to_day = date("d", $to_date);
+
+
 $args = array(
     'post_type' => 'post',
     'posts_per_page' => 10,
-    'orderby' => 'title',
-    'order' => 'ASC',
+    'orderby' => 'date',
+    'order' => 'DESC',
     's' => $_GET['search'],
     'cat' => $_GET['category'],
     'date_query' => array(
         'relation' => 'AND',
         array(
-            'compare' => '<=',
+            'compare' => '>=',
             array(
-                'year' => 2019, 'month' => 06, 'day' => 21,
+                'year' => (int)$from_year, 'month' => (int)$from_month, 'day' => (int)$from_day,
             ),
         ),
         array(
-            'compare' => '>=',
+            'compare' => '<=',
             array(
-                'year' => 2019, 'month' => 05, 'day' => 21,
+                'year' => (int)$to_year, 'month' => (int)$to_month, 'day' => (int)$to_day,
             ),
         ),
     ),
-    'meta_query' => array()
+
 );
 
 $wp_query = new WP_Query($args);

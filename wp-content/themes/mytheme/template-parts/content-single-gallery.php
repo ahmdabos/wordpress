@@ -1,5 +1,4 @@
 <script>
-
     jQuery(document).ready(function () {
         jQuery('.wp-block-gallery').addClass('owl-carousel');
         jQuery('.owl-carousel').owlCarousel({
