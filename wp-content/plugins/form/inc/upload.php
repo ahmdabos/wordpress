@@ -8,11 +8,11 @@ function custom_upload_dir($arr)
 }
 
 add_filter('upload_dir', 'custom_upload_dir');
-if ($_FILES['fileToUpload']['name']) {
-    if ($_FILES['fileToUpload']['size'] <= 50000000) {
-        $filename = sanitize_text_field($_FILES["fileToUpload"]["name"]);
-        $my_custom_filename = time() . $filename;
-        wp_upload_bits($my_custom_filename, null, '$content');
+if ($_FILES['attachment']['name']) {
+    if ($_FILES['attachment']['size'] <= 50000000) {
+        $filename = sanitize_text_field($_FILES["attachment"]["name"]);
+        $attachment = time() . $filename;
+        wp_upload_bits($attachment, null, '$content');
     }
 }
 remove_filter('upload_dir', 'custom_upload_dir');

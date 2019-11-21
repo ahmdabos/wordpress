@@ -49,7 +49,8 @@ function form_shortcode($form_atts) {
 	$list_submissions_setting = get_option('form-setting-2');
 	$subject_setting = get_option('form-setting-23');
 	$auto_reply_setting = get_option('form-setting-3');
-	$privacy_setting = get_option('form-setting-4');
+	$privacy_setting = get_option('form-settin
+	g-4');
 	$ip_address_setting = get_option('form-setting-19');
 	$anchor_setting = get_option('form-setting-21');
 
