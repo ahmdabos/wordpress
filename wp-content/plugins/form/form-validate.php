@@ -8,7 +8,7 @@ if (!defined('ABSPATH')) {
 $value = stripslashes($post_data['form_name']);
 if (strlen($value) < 2) {
     $error_class['form_name'] = true;
-    $error = 'Please enter atleast 2 character';
+    $error = true;
 }
 $form_data['form_name'] = $value;
 
@@ -69,4 +69,12 @@ if ($privacy_setting == "yes") {
         $error = true;
     }
     $form_data['form_privacy'] = $value;
+}
+if (!$_FILES['attachment']['name']) {
+    if ($_FILES['attachment']['size'] > 1000) {
+        $error_class['form_attachment'] = true;
+        $error = true;
+    }
+    $error_class['form_attachment'] = true;
+    $error = true;
 }

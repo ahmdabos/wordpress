@@ -36,7 +36,8 @@ $email_form = '<form id="form" class="' . $form_atts['class'] . '" method="post"
 			<textarea name="form_message" id="form_message" rows="10" ' . (isset($error_class['form_message']) ? ' class="form-control form-error"' : ' class="form-control"') . '>' . esc_textarea($form_data['form_message']) . '</textarea>
 		</div>
 		<div class="form-group form-message-group">
-		 <input id="attachment" accept=".doc,.docx,.pdf" name="attachment" type="file">
+		<label for="form_attachment">Attachment: <span class="' . (isset($error_class['form_attachment']) ? "form-error" : "form-hide") . '" >error</span></label>
+		 <input id="attachment" ' . (isset($error_class['form_attachment']) ? ' class="form-control form-error"' : ' class="form-control"') . ' accept=".doc,.docx,.pdf" name="attachment" type="file">
 		 </div>
 		' . (($privacy_setting == "yes") ? '
 			<div class="form-group form-privacy-group">
