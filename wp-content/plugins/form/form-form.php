@@ -7,7 +7,8 @@ if (!defined('ABSPATH')) {
 // contact form
 $email_form = '<form id="form" class="' . $form_atts['class'] . '" method="post" enctype="multipart/form-data">
 		<div class="form-group form-name-group">
-			<label for="form_name">' . esc_attr($name_label) . ': <span class="' . (isset($error_class['form_name']) ? "form-error" : "form-hide") . '" >' . esc_attr($error_name_label) . '</span></label>
+			<label for="form_name">' . esc_attr($name_label) . ': 
+			<span class="' . (isset($error_class['form_name']) ? "form-error" : "form-hide") . '" >' . esc_attr($error_name_label) . '</span></label>
 			<input type="text" name="form_name" id="form_name" ' . (isset($error_class['form_name']) ? ' class="form-control form-error"' : ' class="form-control"') . ' value="' . esc_attr($form_data['form_name']) . '" />
 		</div>
 		<div class="form-group form-email-group">
@@ -36,7 +37,11 @@ $email_form = '<form id="form" class="' . $form_atts['class'] . '" method="post"
 			<textarea name="form_message" id="form_message" rows="10" ' . (isset($error_class['form_message']) ? ' class="form-control form-error"' : ' class="form-control"') . '>' . esc_textarea($form_data['form_message']) . '</textarea>
 		</div>
 		<div class="form-group form-message-group">
-		<label for="form_attachment">Attachment: <span class="' . (isset($error_class['form_attachment']) ? "form-error" : "form-hide") . '" >error</span></label>
+		<label for="form_attachment">Attachment: 
+		<span class="' . (isset($error_class['form_attachment_required']) ? "form-error" : "form-hide") . '" >Required</span>
+		<span class="' . (isset($error_class['form_attachment_size']) ? "form-error" : "form-hide") . '" >File cannot exceed 2MB</span>
+		<span class="' . (isset($error_class['form_attachment_type']) ? "form-error" : "form-hide") . '" >Allowed file type is jpg,png,jpeg</span>
+		</label>
 		 <input id="attachment" ' . (isset($error_class['form_attachment']) ? ' class="form-control form-error"' : ' class="form-control"') . ' accept=".doc,.docx,.pdf" name="attachment" type="file">
 		 </div>
 		' . (($privacy_setting == "yes") ? '

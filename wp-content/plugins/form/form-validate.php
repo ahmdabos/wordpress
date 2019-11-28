@@ -70,11 +70,43 @@ if ($privacy_setting == "yes") {
     }
     $form_data['form_privacy'] = $value;
 }
+
+
 if (!$_FILES['attachment']['name']) {
-    if ($_FILES['attachment']['size'] > 1000) {
-        $error_class['form_attachment'] = true;
-        $error = true;
-    }
-    $error_class['form_attachment'] = true;
     $error = true;
+    $error_class['form_attachment_required'] = true;
+} else {
+    $allowed_image_extension = array(
+        "png",
+        "jpg",
+        "jpeg"
+    );
+    // Get image file extension
+    $file_extension = strtolower(pathinfo($_FILES["attachment"]["name"], PATHINFO_EXTENSION));
+    if ($_FILES['attachment']['size'] > 2097152) {
+        $error = true;
+        $error_class['form_attachment_size'] = true;
+    }
+    if (!in_array($file_extension, $allowed_image_extension)) {
+        $error = true;
+        $error_class['form_attachment_type'] = true;
+
+    }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
