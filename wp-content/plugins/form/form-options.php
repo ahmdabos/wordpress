@@ -59,26 +59,14 @@ function form_admin_init()
     add_settings_field('form-field-9', esc_attr__('Message', 'form'), 'form_field_callback_9', 'form-label', 'form-label-section');
     register_setting('form-label-options', 'form-setting-9', array('sanitize_callback' => 'sanitize_text_field'));
 
+    add_settings_field('form-field-99', esc_attr__('Attachment', 'form'), 'form_field_callback_99', 'form-label', 'form-label-section');
+    register_setting('form-label-options', 'form-setting-99', array('sanitize_callback' => 'sanitize_text_field'));
+
     add_settings_field('form-field-18', esc_attr__('Privacy', 'form'), 'form_field_callback_18', 'form-label', 'form-label-section');
     register_setting('form-label-options', 'form-setting-18', array('sanitize_callback' => 'sanitize_text_field'));
 
     add_settings_field('form-field-10', esc_attr__('Submit', 'form'), 'form_field_callback_10', 'form-label', 'form-label-section');
     register_setting('form-label-options', 'form-setting-10', array('sanitize_callback' => 'sanitize_text_field'));
-
-    add_settings_field('form-field-11', esc_attr__('Name error', 'form'), 'form_field_callback_11', 'form-label', 'form-label-section');
-    register_setting('form-label-options', 'form-setting-11', array('sanitize_callback' => 'sanitize_text_field'));
-
-    add_settings_field('form-field-13', esc_attr__('Email error', 'form'), 'form_field_callback_13', 'form-label', 'form-label-section');
-    register_setting('form-label-options', 'form-setting-13', array('sanitize_callback' => 'sanitize_text_field'));
-
-    add_settings_field('form-field-20', esc_attr__('Subject error', 'form'), 'form_field_callback_20', 'form-label', 'form-label-section');
-    register_setting('form-label-options', 'form-setting-20', array('sanitize_callback' => 'sanitize_text_field'));
-
-    add_settings_field('form-field-14', esc_attr__('Captcha error', 'form'), 'form_field_callback_14', 'form-label', 'form-label-section');
-    register_setting('form-label-options', 'form-setting-14', array('sanitize_callback' => 'sanitize_text_field'));
-
-    add_settings_field('form-field-12', esc_attr__('Message error', 'form'), 'form_field_callback_12', 'form-label', 'form-label-section');
-    register_setting('form-label-options', 'form-setting-12', array('sanitize_callback' => 'sanitize_text_field'));
 
     add_settings_section('form-message-section', esc_attr__('Messages', 'form'), '', 'form-message');
 
@@ -182,40 +170,17 @@ function form_field_callback_9()
     $value = esc_attr(get_option('form-setting-9'));
     echo "<input type='text' size='40' name='form-setting-9' placeholder='$placeholder' value='$value' />";
 }
-
+function form_field_callback_99()
+{
+    $placeholder = esc_attr__('Attachment', 'form');
+    $value = esc_attr(get_option('form-setting-99'));
+    echo "<input type='text' size='40' name='form-setting-99' placeholder='$placeholder' value='$value' />";
+}
 function form_field_callback_10()
 {
     $placeholder = esc_attr__('Submit', 'form');
     $value = esc_attr(get_option('form-setting-10'));
     echo "<input type='text' size='40' name='form-setting-10' placeholder='$placeholder' value='$value' />";
-}
-
-function form_field_callback_11()
-{
-    $placeholder = esc_attr__('Please enter at least 2 characters', 'form');
-    $value = esc_attr(get_option('form-setting-11'));
-    echo "<input type='text' size='40' name='form-setting-11' placeholder='$placeholder' value='$value' />";
-}
-
-function form_field_callback_12()
-{
-    $placeholder = esc_attr__('Please enter at least 10 characters', 'form');
-    $value = esc_attr(get_option('form-setting-12'));
-    echo "<input type='text' size='40' name='form-setting-12' placeholder='$placeholder' value='$value' />";
-}
-
-function form_field_callback_13()
-{
-    $placeholder = esc_attr__('Please enter a valid email', 'form');
-    $value = esc_attr(get_option('form-setting-13'));
-    echo "<input type='text' size='40' name='form-setting-13' placeholder='$placeholder' value='$value' />";
-}
-
-function form_field_callback_14()
-{
-    $placeholder = esc_attr__('Please enter the correct number', 'form');
-    $value = esc_attr(get_option('form-setting-14'));
-    echo "<input type='text' size='40' name='form-setting-14' placeholder='$placeholder' value='$value' />";
 }
 
 function form_field_callback_15()
@@ -247,13 +212,6 @@ function form_field_callback_18()
     $placeholder = esc_attr__('I consent to having this website collect my personal data via this form.', 'form');
     $value = esc_attr(get_option('form-setting-18'));
     echo "<input type='text' size='40' name='form-setting-18' placeholder='$placeholder' value='$value' />";
-}
-
-function form_field_callback_20()
-{
-    $placeholder = esc_attr__('Please enter at least 2 characters', 'form');
-    $value = esc_attr(get_option('form-setting-20'));
-    echo "<input type='text' size='40' name='form-setting-20' placeholder='$placeholder' value='$value' />";
 }
 
 function form_field_callback_19()

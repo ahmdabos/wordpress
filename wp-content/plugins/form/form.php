@@ -25,11 +25,15 @@ function form_init()
 
 add_action('plugins_loaded', 'form_init');
 
+
 // enqueue plugin scripts
 function form_scripts()
 {
-    wp_enqueue_style('form_style', plugins_url('/css/form-style.min.css', __FILE__));
+    wp_enqueue_style('form_style', plugins_url('/css/form-style.css', __FILE__), array(), time(), 'all');
+    wp_enqueue_script('jquery_validate', plugins_url('/js/jquery.validate.min.js', __FILE__), array('jquery'), time(), 'all');
+    wp_enqueue_script('custom', plugins_url('/js/custom.js', __FILE__), array('jquery','jquery_validate'), time(), 'all');
 }
+
 
 add_action('wp_enqueue_scripts', 'form_scripts');
 

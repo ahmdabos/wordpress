@@ -10,13 +10,9 @@ $email_label = get_option('form-setting-6');
 $subject_label = get_option('form-setting-7');
 $captcha_label = get_option('form-setting-8');
 $message_label = get_option('form-setting-9');
+$attachment_label = get_option('form-setting-99');
 $privacy_label = get_option('form-setting-18');
 $submit_label = get_option('form-setting-10');
-$error_name_label = get_option('form-setting-11');
-$error_email_label = get_option('form-setting-13');
-$error_subject_label = get_option('form-setting-20');
-$error_captcha_label = get_option('form-setting-14');
-$error_message_label = get_option('form-setting-12');
 // get custom messages from settingspage
 $server_error_message = get_option('form-setting-15');
 $thank_you_message = get_option('form-setting-16');
@@ -104,78 +100,6 @@ if (empty($form_atts['label_submit'])) {
     }
 } else {
     $submit_label = $form_atts['label_submit'];
-}
-
-// error name label
-$value = $error_name_label;
-if (empty($form_atts['error_name'])) {
-    if (empty($value)) {
-        $error_name_label = __('Please enter at least 2 characters', 'form');
-    } else {
-        $error_name_label = $value;
-    }
-} else {
-    $error_name_label = $form_atts['error_name'];
-}
-
-// error email label
-$value = $error_email_label;
-if (empty($form_atts['error_email'])) {
-    if (empty($value)) {
-        $error_email_label = __('Please enter a valid email', 'form');
-    } else {
-        $error_email_label = $value;
-    }
-} else {
-    $error_email_label = $form_atts['error_email'];
-}
-
-// error subject label
-$value = $error_subject_label;
-if (empty($form_atts['error_subject'])) {
-    if (empty($value)) {
-        $error_subject_label = __('Please enter at least 2 characters', 'form');
-    } else {
-        $error_subject_label = $value;
-    }
-} else {
-    $error_subject_label = $form_atts['error_subject'];
-}
-
-// error captcha label
-$value = $error_captcha_label;
-if (empty($form_atts['error_captcha'])) {
-    if (empty($value)) {
-        $error_captcha_label = __('Please enter the correct number', 'form');
-    } else {
-        $error_captcha_label = $value;
-    }
-} else {
-    $error_captcha_label = $form_atts['error_captcha'];
-}
-
-// error message label
-$value = $error_message_label;
-if (empty($form_atts['error_message'])) {
-    if (empty($value)) {
-        $error_message_label = __('Please enter at least 10 characters', 'form');
-    } else {
-        $error_message_label = $value;
-    }
-} else {
-    $error_message_label = $form_atts['error_message'];
-}
-
-// server error message
-$value = $server_error_message;
-if (empty($form_atts['message_error'])) {
-    if (empty($value)) {
-        $server_error_message = __('Error! Could not send form. This might be a server issue.', 'form');
-    } else {
-        $server_error_message = $value;
-    }
-} else {
-    $server_error_message = $form_atts['message_error'];
 }
 
 // thank you message
