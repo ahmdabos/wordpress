@@ -185,6 +185,3 @@ require get_template_directory() . '/inc/custom-taxonomy.php';
  * Custom Metabox
  */
 require get_template_directory() . '/inc/custom-metabox.php';
-
-
-
