@@ -8,7 +8,6 @@ if (!defined('ABSPATH')) {
 function form_menu_page()
 {
     add_options_page(esc_attr__('FORM', 'form'), esc_attr__('form', 'form'), 'manage_options', 'form', 'form_options_page');
-
 }
 
 add_action('admin_menu', 'form_menu_page');
