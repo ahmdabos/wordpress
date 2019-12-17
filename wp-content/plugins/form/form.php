@@ -1,7 +1,3 @@
-
-
-
-
 <?php
 /*
  * Plugin Name: Form
@@ -66,6 +62,7 @@ if ($list_submissions_setting == "yes") {
         );
         register_post_type('submission', $form_args);
     }
+
     add_action('init', 'submissions_postype');
 
     class Submission_Info_Meta_Box
@@ -77,12 +74,14 @@ if ($list_submissions_setting == "yes") {
                 add_action('load-post-new.php', array($this, 'init_metabox'));
             }
         }
+
         public function init_metabox()
         {
             add_action('add_meta_boxes', array($this, 'add_metabox'));
             add_action('save_post', array($this, 'save_metabox'), 10, 2);
 
         }
+
         public function add_metabox()
         {
 
@@ -96,6 +95,7 @@ if ($list_submissions_setting == "yes") {
             );
 
         }
+
         public function render_metabox($post)
         {
 
@@ -107,8 +107,6 @@ if ($list_submissions_setting == "yes") {
             $submission_email = get_post_meta($post->ID, 'submission_email', true);
             $submission_message = get_post_meta($post->ID, 'submission_message', true);
             $submission_attachment = get_post_meta($post->ID, 'submission_attachment', true);
-
-
 
 
             // Set default values.
@@ -154,6 +152,7 @@ if ($list_submissions_setting == "yes") {
 
 
         }
+
         public function save_metabox($post_id, $post)
         {
 
@@ -188,7 +187,6 @@ if ($list_submissions_setting == "yes") {
             $submission_new_attachment = isset($_POST['submission_attachment']) ? $_POST['submission_attachment'] : '';
 
 
-
             // Update the meta field in the database.
             update_post_meta($post_id, 'submission_name', $submission_new_name);
             update_post_meta($post_id, 'submission_email', $submission_new_email);
@@ -198,6 +196,7 @@ if ($list_submissions_setting == "yes") {
 
         }
     }
+
     new Submission_Info_Meta_Box;
 
 
@@ -209,7 +208,7 @@ if ($list_submissions_setting == "yes") {
         $columns['email_column'] = esc_attr__('Email', 'form');
         $columns['message_column'] = esc_attr__('Message', 'form');
         $columns['attachment_column'] = esc_attr__('Attachment', 'form');
-        $custom_order = array('cb', 'title', 'name_column', 'email_column', 'message_column','attachment_column', 'date');
+        $custom_order = array('cb', 'title', 'name_column', 'email_column', 'message_column', 'attachment_column', 'date');
         foreach ($custom_order as $colname) {
             $new[$colname] = $columns[$colname];
         }
