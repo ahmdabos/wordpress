@@ -9,26 +9,10 @@
 ?>
 
 <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
-	<header class="entry-header">
-		<?php the_title( sprintf( '<h2 class="entry-title"><a href="%s" rel="bookmark">', esc_url( get_permalink() ) ), '</a></h2>' ); ?>
-
-		<?php if ( 'post' === get_post_type() ) : ?>
-		<div class="entry-meta">
-			<?php
-			mytheme_posted_on();
-			mytheme_posted_by();
-			?>
-		</div><!-- .entry-meta -->
-		<?php endif; ?>
-	</header><!-- .entry-header -->
-
-	<?php mytheme_post_thumbnail(); ?>
-
-	<div class="entry-summary">
-		<?php the_excerpt(); ?>
-	</div><!-- .entry-summary -->
-
-	<footer class="entry-footer">
-		<?php mytheme_entry_footer(); ?>
-	</footer><!-- .entry-footer -->
 </article><!-- #post-<?php the_ID(); ?> -->
+<h1><a href="<?php the_permalink() ?>"><?php the_title() ?></a></h1>
+<div><?php the_post_thumbnail('blog-thumbnail') ?></div>
+<em><?php echo get_the_date() ?></em>
+<em><?php the_author() ?></em>
+<div><?php the_category() ?></div>
+<div><?php the_excerpt() ?></div>

@@ -28,7 +28,7 @@ function car_post_type()
         'description' => __('Car post type.', 'text_domain'),
         'labels' => $labels,
         'supports' => array('title', 'editor', 'thumbnail',),
-        'taxonomies' => array('category','color'),
+        'taxonomies' => array('category', 'color'),
         'hierarchical' => false,
         'public' => true,
         'show_ui' => true,
@@ -47,6 +47,7 @@ function car_post_type()
     register_post_type('car', $args);
 
 }
+
 add_action('init', 'car_post_type', 0);
 
 
@@ -98,6 +99,7 @@ function slider_post_type()
     register_post_type('slider', $args);
 
 }
+
 add_action('init', 'slider_post_type', 0);
 
 
@@ -130,7 +132,7 @@ function gallery_post_type()
         'description' => __('Gallery post type.', 'text_domain'),
         'labels' => $labels,
         'supports' => array('title', 'editor', 'thumbnail',),
-        'taxonomies' => array('category','color'),
+        'taxonomies' => array('category', 'color'),
         'hierarchical' => false,
         'public' => true,
         'show_ui' => true,
@@ -149,4 +151,5 @@ function gallery_post_type()
     register_post_type('gallery', $args);
 
 }
+
 add_action('init', 'gallery_post_type', 0);
