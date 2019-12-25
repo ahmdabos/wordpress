@@ -58,9 +58,6 @@ function form_admin_init()
     add_settings_field('form-field-9', esc_attr__('Message', 'form'), 'form_field_callback_9', 'form-label', 'form-label-section');
     register_setting('form-label-options', 'form-setting-9', array('sanitize_callback' => 'sanitize_text_field'));
 
-    add_settings_field('form-field-99', esc_attr__('Attachment', 'form'), 'form_field_callback_99', 'form-label', 'form-label-section');
-    register_setting('form-label-options', 'form-setting-99', array('sanitize_callback' => 'sanitize_text_field'));
-
     add_settings_field('form-field-18', esc_attr__('Privacy', 'form'), 'form_field_callback_18', 'form-label', 'form-label-section');
     register_setting('form-label-options', 'form-setting-18', array('sanitize_callback' => 'sanitize_text_field'));
 
@@ -169,12 +166,7 @@ function form_field_callback_9()
     $value = esc_attr(get_option('form-setting-9'));
     echo "<input type='text' size='40' name='form-setting-9' placeholder='$placeholder' value='$value' />";
 }
-function form_field_callback_99()
-{
-    $placeholder = esc_attr__('Attachment', 'form');
-    $value = esc_attr(get_option('form-setting-99'));
-    echo "<input type='text' size='40' name='form-setting-99' placeholder='$placeholder' value='$value' />";
-}
+
 function form_field_callback_10()
 {
     $placeholder = esc_attr__('Submit', 'form');
@@ -212,6 +204,8 @@ function form_field_callback_18()
     $value = esc_attr(get_option('form-setting-18'));
     echo "<input type='text' size='40' name='form-setting-18' placeholder='$placeholder' value='$value' />";
 }
+
+
 
 function form_field_callback_19()
 {

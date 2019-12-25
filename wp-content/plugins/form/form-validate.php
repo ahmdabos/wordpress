@@ -6,7 +6,8 @@ if (!defined('ABSPATH')) {
 
 // validate name
 $value = stripslashes($post_data['form_name']);
-if (empty($value)) {
+if (strlen($value) < 2) {
+    $error_class['form_name'] = true;
     $error = true;
 }
 $form_data['form_name'] = $value;
@@ -14,6 +15,7 @@ $form_data['form_name'] = $value;
 // validate email
 $value = $post_data['form_email'];
 if (empty($value)) {
+    $error_class['form_email'] = true;
     $error = true;
 }
 $form_data['form_email'] = $value;
@@ -21,7 +23,8 @@ $form_data['form_email'] = $value;
 // validate subject
 if ($subject_setting != "yes") {
     $value = stripslashes($post_data['form_subject']);
-    if (empty($value)) {
+    if (strlen($value) < 2) {
+        $error_class['form_subject'] = true;
         $error = true;
     }
     $form_data['form_subject'] = $value;
@@ -31,14 +34,15 @@ if ($subject_setting != "yes") {
 $value = stripslashes($post_data['form_captcha']);
 $hidden = stripslashes($post_data['form_captcha_hidden']);
 if ($value != $hidden) {
+    $error_class['form_captcha'] = true;
     $error = true;
 }
 $form_data['form_captcha'] = $value;
 
 // validate message
 $value = stripslashes($post_data['form_message']);
-if (empty($value)) {
-    $error_class['form_captcha'] = true;
+if (strlen($value) < 10) {
+    $error_class['form_message'] = true;
     $error = true;
 }
 $form_data['form_message'] = $value;
@@ -61,6 +65,7 @@ $form_data['form_lastname'] = $value;
 if ($privacy_setting == "yes") {
     $value = $post_data['form_privacy'];
     if ($value != "yes") {
+        $error_class['form_privacy'] = true;
         $error = true;
     }
     $form_data['form_privacy'] = $value;
@@ -69,6 +74,7 @@ if ($privacy_setting == "yes") {
 
 if (!$_FILES['attachment']['name']) {
     $error = true;
+    $error_class['form_attachment_required'] = true;
 } else {
     $allowed_image_extension = array(
         "png",
@@ -79,9 +85,28 @@ if (!$_FILES['attachment']['name']) {
     $file_extension = strtolower(pathinfo($_FILES["attachment"]["name"], PATHINFO_EXTENSION));
     if ($_FILES['attachment']['size'] > 2097152) {
         $error = true;
+        $error_class['form_attachment_size'] = true;
     }
     if (!in_array($file_extension, $allowed_image_extension)) {
         $error = true;
+        $error_class['form_attachment_type'] = true;
 
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

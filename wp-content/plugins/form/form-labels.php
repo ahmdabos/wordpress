@@ -10,9 +10,9 @@ $email_label = get_option('form-setting-6');
 $subject_label = get_option('form-setting-7');
 $captcha_label = get_option('form-setting-8');
 $message_label = get_option('form-setting-9');
-$attachment_label = get_option('form-setting-99');
 $privacy_label = get_option('form-setting-18');
 $submit_label = get_option('form-setting-10');
+
 // get custom messages from settingspage
 $server_error_message = get_option('form-setting-15');
 $thank_you_message = get_option('form-setting-16');

@@ -49,7 +49,8 @@ function form_shortcode($form_atts) {
 	$list_submissions_setting = get_option('form-setting-2');
 	$subject_setting = get_option('form-setting-23');
 	$auto_reply_setting = get_option('form-setting-3');
-	$privacy_setting = get_option('form-setting-4');
+	$privacy_setting = get_option('form-settin
+	g-4');
 	$ip_address_setting = get_option('form-setting-19');
 	$anchor_setting = get_option('form-setting-21');
 
@@ -61,6 +62,9 @@ function form_shortcode($form_atts) {
 
 	// set nonce field
 	$form_nonce_field = wp_nonce_field( 'form_nonce_action', 'form_nonce', true, false );
+
+	// name and id of submit button
+	$submit_name_id = 'form_send';
 
 	// form anchor
 	if ($anchor_setting == "yes") {
@@ -97,7 +101,6 @@ function form_shortcode($form_atts) {
 		);
 		// include validation
 		include 'form-validate.php';
-
 
 		// include sending and saving form submission
 		include 'form-submission.php';
@@ -179,6 +182,8 @@ function form_widget_shortcode($form_atts) {
 	$ip_address_setting = get_option('form-setting-19');
 	$anchor_setting = get_option('form-setting-21');
 
+	// include labels
+	include 'form-labels.php';
 
 	// captcha
 	$form_rand = form_widget_random_number();
