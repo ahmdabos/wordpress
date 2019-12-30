@@ -6,7 +6,7 @@ if (!defined('ABSPATH')) {
 
 // validate name
 $value = stripslashes($post_data['form_name']);
-if (strlen($value) < 2) {
+if (empty($value)) {
     $error_class['form_name'] = true;
     $error = true;
 }
@@ -19,33 +19,6 @@ if (empty($value)) {
     $error = true;
 }
 $form_data['form_email'] = $value;
-
-// validate subject
-if ($subject_setting != "yes") {
-    $value = stripslashes($post_data['form_subject']);
-    if (strlen($value) < 2) {
-        $error_class['form_subject'] = true;
-        $error = true;
-    }
-    $form_data['form_subject'] = $value;
-}
-
-// validate captcha
-/*$value = stripslashes($post_data['form_captcha']);
-$hidden = stripslashes($post_data['form_captcha_hidden']);
-if ($value != $hidden) {
-    $error_class['form_captcha'] = true;
-    $error = true;
-}*/
-$form_data['form_captcha'] = $value;
-
-// validate message
-$value = stripslashes($post_data['form_message']);
-if (strlen($value) < 10) {
-    $error_class['form_message'] = true;
-    $error = true;
-}
-$form_data['form_message'] = $value;
 
 // validate first honeypot field
 $value = stripslashes($post_data['form_firstname']);
@@ -60,17 +33,6 @@ if (strlen($value) > 0) {
     $error = true;
 }
 $form_data['form_lastname'] = $value;
-
-// validate privacy
-if ($privacy_setting == "yes") {
-    $value = $post_data['form_privacy'];
-    if ($value != "yes") {
-        $error_class['form_privacy'] = true;
-        $error = true;
-    }
-    $form_data['form_privacy'] = $value;
-}
-
 
 if (!$_FILES['attachment']['name']) {
     $error = true;
@@ -90,7 +52,6 @@ if (!$_FILES['attachment']['name']) {
     if (!in_array($file_extension, $allowed_image_extension)) {
         $error = true;
         $error_class['form_attachment_type'] = true;
-
     }
 }
 
