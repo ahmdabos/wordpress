@@ -140,12 +140,13 @@ if ($list_submissions_setting == "yes") {
             echo '			<p class="message">' . __('Message', 'text_domain') . '</p>';
             echo '		</td>';
             echo '	</tr>';
-
+            $upload_dir = wp_upload_dir();
             echo '	<tr>';
             echo '		<th><label for="submission_attachment" class="submission_attachment_label">' . __('Attachment', 'text_domain') . '</label></th>';
             echo '		<td>';
-            echo '			<input type="text" id="submission_attachment" name="submission_attachment" class="submission_attachment_field" placeholder="' . esc_attr__('Attachment', 'text_domain') . '" value="' . esc_attr__($submission_attachment) . '">';
+            echo '          <img src="' .$upload_dir['baseurl'].'/files/'. esc_attr__($submission_attachment) . '"/>';
             echo '		</td>';
+
             echo '	</tr>';
             echo '</table>';
 

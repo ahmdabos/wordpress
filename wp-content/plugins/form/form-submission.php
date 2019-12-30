@@ -58,6 +58,7 @@ if ($error == false) {
 
     // save form submission in database
     if ($list_submissions_setting == "yes") {
+        $attachment = basename($new_file_path);
         $form_post_information = array(
             'post_title' => wp_strip_all_tags($subject),
 

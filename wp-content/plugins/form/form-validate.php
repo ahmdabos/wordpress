@@ -31,12 +31,12 @@ if ($subject_setting != "yes") {
 }
 
 // validate captcha
-$value = stripslashes($post_data['form_captcha']);
+/*$value = stripslashes($post_data['form_captcha']);
 $hidden = stripslashes($post_data['form_captcha_hidden']);
 if ($value != $hidden) {
     $error_class['form_captcha'] = true;
     $error = true;
-}
+}*/
 $form_data['form_captcha'] = $value;
 
 // validate message
