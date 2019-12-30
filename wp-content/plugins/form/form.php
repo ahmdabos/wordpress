@@ -203,7 +203,6 @@ if ($list_submissions_setting == "yes") {
     // dashboard submission columns
     function form_custom_columns($columns)
     {
-
         $columns['name_column'] = esc_attr__('Name', 'form');
         $columns['email_column'] = esc_attr__('Email', 'form');
         $columns['message_column'] = esc_attr__('Message', 'form');
@@ -232,9 +231,11 @@ if ($list_submissions_setting == "yes") {
             $message = get_post_meta($post_id, 'submission_message', true);
             echo $message;
         }
+
         if ('attachment_column' == $column_name) {
+            $upload_dir = wp_upload_dir();
             $attachment = get_post_meta($post_id, 'submission_attachment', true);
-            echo $attachment;
+            echo '<img style="width:60px;" src="' .$upload_dir['baseurl'].'/files/'. esc_attr__($attachment) . '"/>';
         }
     }
 
@@ -245,7 +246,6 @@ if ($list_submissions_setting == "yes") {
     {
         $columns['name_column'] = 'name_sub';
         $columns['email_column'] = 'email_sub';
-
         return $columns;
     }
 
