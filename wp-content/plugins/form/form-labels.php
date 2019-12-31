@@ -6,6 +6,7 @@ if (!defined('ABSPATH')) {
 
 $name_label = get_option('form-setting-5');
 $email_label = get_option('form-setting-6');
+$attachment_label = get_option('form-setting-7');
 $submit_label = get_option('form-setting-10');
 $server_error_message = get_option('form-setting-15');
 $thank_you_message = get_option('form-setting-16');
@@ -34,7 +35,17 @@ if (empty($atts['label_email'])) {
 } else {
     $email_label = $atts['label_email'];
 }
-
+// attachment label
+$value = $attachment_label;
+if (empty($atts['label_attachment'])) {
+    if (empty($value)) {
+        $attachment_label = __('Attachment', 'form');
+    } else {
+        $attachment_label = $value;
+    }
+} else {
+    $attachment_label = $atts['label_attachment'];
+}
 // submit label
 $value = $submit_label;
 if (empty($atts['label_submit'])) {

@@ -25,7 +25,8 @@ add_action('plugins_loaded', 'form_init');
 function form_scripts()
 {
     wp_enqueue_style('form_style', plugins_url('/css/form-style.css', __FILE__));
-    wp_enqueue_script('form_validator', plugins_url('/js/jquery.form-validator.min.js', __FILE__), array('jquery'), time(), true);
+    wp_enqueue_script('form_validator', plugins_url('/js/jquery.form-validator/jquery.form-validator.js', __FILE__), array('jquery'), time(), true);
+    wp_enqueue_script('file_validator', plugins_url('/js/jquery.form-validator/file.js', __FILE__), array('form_validator'), time(), true);
     wp_enqueue_script('custom', plugins_url('/js/custom.js', __FILE__), array('jquery', 'form_validator'), time(), true);
 
 }

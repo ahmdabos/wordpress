@@ -1,7 +1,6 @@
-(function($){
-
+(function($) {
     $.validate({
-        form : '#form'
+        form : '#form',
+        modules : 'file,',
     });
-
 })(jQuery);

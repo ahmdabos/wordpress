@@ -1,3 +1,4 @@
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
 <?php
 // disable direct access
 if (!defined('ABSPATH')) {
@@ -32,12 +33,20 @@ enctype="multipart/form-data">
         />
     </div>
     <div>
+       <!--@TODO:file validation error message not showing-->
         <label for="form_attachment">' . esc_attr($attachment_label) . ': </label>
         <input 
         type="file"
         name="attachment"  
         id="attachment" 
-        >
+        data-validation="required size mime" 
+        data-validation-max-size="3M"
+        data-validation-allowing="jpg, png, gif" 
+        data-validation-error-msg-required="Attachment is required"
+        data-validation-error-msg-size="Max size 2MB"
+        data-validation-error-msg-mime="Only jpg, png, gif allowed"
+        />
+        
     </div>
     <div class="form-hide">
         <input 
