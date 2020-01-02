@@ -30,21 +30,21 @@ if ($error == false) {
     $reply_message = htmlspecialchars_decode($auto_reply_message, ENT_QUOTES);
 
     // save form submission in database
-    $attachment = basename($new_file_path);
+    $upload_dir = wp_upload_dir();
+    $attachment = $upload_dir['url'] . '/' . basename($new_file_path);
     $list_submissions_setting = get_option('form-setting-2');
     if ($list_submissions_setting == "yes") {
         $form_post_information = array(
             'post_title' => wp_strip_all_tags($subject),
             'post_content' => $form_data['form_name'] . "\r\n\r\n" . $form_data['form_email'] . "\r\n\r\n" . $attachment,
             'post_type' => 'submission',
-            'post_status' => 'pending',
+            'post_status' => 'publish',
             'meta_input' => array("name_sub" => $form_data['form_name'], "email_sub" => $form_data['form_email'], "attachment_sub" => $attachment)
         );
         $post_id = wp_insert_post($form_post_information);
         update_post_meta($post_id, 'submission_name', $form_data['form_name']);
         update_post_meta($post_id, 'submission_email', $form_data['form_email']);
         update_post_meta($post_id, 'submission_attachment', $attachment);
-
     }
     // mail
     $content = $form_data['form_name'] . "\r\n\r\n" . $form_data['form_email'] . "\r\n\r\n" . $attachment;

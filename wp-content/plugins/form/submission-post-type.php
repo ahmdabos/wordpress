@@ -23,6 +23,7 @@ function submissions_postype()
 
 add_action('init', 'submissions_postype');
 
+
 class Submission_Info_Meta_Box
 {
     public function __construct()
@@ -42,7 +43,6 @@ class Submission_Info_Meta_Box
 
     public function add_metabox()
     {
-
         add_meta_box(
             'submission_info',
             __('Submission Info', 'text_domain'),
@@ -56,7 +56,6 @@ class Submission_Info_Meta_Box
 
     public function render_metabox($post)
     {
-
         // Add nonce for security and authentication.
         wp_nonce_field('submission_nonce_action', 'submission_nonce');
 
@@ -90,13 +89,30 @@ class Submission_Info_Meta_Box
         echo '		</td>';
         echo '	</tr>';
 
-        $upload_dir = wp_upload_dir();
+
         echo '	<tr>';
         echo '		<th><label for="submission_attachment" class="submission_attachment_label">' . __('Attachment', 'text_domain') . '</label></th>';
         echo '		<td>';
-        echo '          <img src="' . $upload_dir['baseurl'] . '/files/' . esc_attr__($submission_attachment) . '"/>';
+        echo '          <input id="submission_attachment" name="submission_attachment" type="text" value="' . esc_attr__($submission_attachment) . '" style="width:400px;" />';
+        echo '          <input id="my_upl_button" type="button" value="Upload" /><br>';
+        echo '          <img style="max-width:200px;" src="' . esc_attr__($submission_attachment) . '"/>';
+        echo '          <script>
+                            jQuery(document).ready( function($) {
+                                jQuery("#my_upl_button").click(function() {
+                                    window.send_to_editor = function(html) {
+                                        imgurl = jQuery(html).attr("src")
+                                        jQuery("#submission_attachment").val(imgurl);
+                                        jQuery("#picsrc").attr("src", imgurl);
+                                        tb_remove();
+                                    }
+                    
+                                    formfield = jQuery("#submission_attachment").attr("name");
+                                    tb_show("", "media-upload.php?type=image&amp;TB_iframe=true" );
+                                    return false;
+                                }); 
+                            });
+                        </script>';
         echo '		</td>';
-
         echo '	</tr>';
         echo '</table>';
 
@@ -133,14 +149,13 @@ class Submission_Info_Meta_Box
         // Sanitize user input.
         $submission_new_name = isset($_POST['submission_name']) ? sanitize_text_field($_POST['submission_name']) : '';
         $submission_new_email = isset($_POST['submission_email']) ? sanitize_text_field($_POST['submission_email']) : '';
-        $submission_new_attachment = isset($_POST['submission_attachment']) ? $_POST['submission_attachment'] : '';
+        $submission_new_attachment = isset($_POST['submission_attachment']) ? sanitize_text_field($_POST['submission_attachment']) : '';
 
 
         // Update the meta field in the database.
         update_post_meta($post_id, 'submission_name', $submission_new_name);
         update_post_meta($post_id, 'submission_email', $submission_new_email);
         update_post_meta($post_id, 'submission_attachment', $submission_new_attachment);
-
 
     }
 }
@@ -176,9 +191,9 @@ function form_custom_columns_content($column_name, $post_id)
 
 
     if ('attachment_column' == $column_name) {
-        $upload_dir = wp_upload_dir();
+
         $attachment = get_post_meta($post_id, 'submission_attachment', true);
-        echo '<img style="width:60px;" src="' . $upload_dir['baseurl'] . '/files/' . esc_attr__($attachment) . '"/>';
+        echo '<img style="width:60px;" src="' . esc_attr__($attachment) . '"/>';
     }
 }
 

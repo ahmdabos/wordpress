@@ -11,15 +11,16 @@ $allowed_mime_type = array(
     'text/plain',*/
 );
 $allowed_size = 2097152;
-function custom_upload_dir($arr)
+
+/*function custom_upload_dir($arr)
 {
     $arr['path'] = $arr['basedir'] . '/files';
     $arr['url'] = $arr['baseurl'] . '/files';
     $arr['subdir'] = '/files';
     return $arr;
 }
+add_filter('upload_dir', 'custom_upload_dir');*/
 
-add_filter('upload_dir', 'custom_upload_dir');
 $wordpress_upload_dir = wp_upload_dir();
 $i = 1;
 
@@ -36,7 +37,6 @@ if ($attachment['error'])
 
 if ($attachment['size'] > wp_max_upload_size() || $attachment['size'] > $allowed_size)
     die('It is too large than expected.');
-
 
 if (!in_array($new_file_mime, get_allowed_mime_types()) || !in_array($new_file_mime, $allowed_mime_type))
     die('WordPress doesn\'t allow this type of uploads.');
@@ -62,9 +62,8 @@ if (move_uploaded_file($attachment['tmp_name'], $new_file_path)) {
 
     // Generate and save the attachment metas into the database
     wp_update_attachment_metadata($upload_id, wp_generate_attachment_metadata($upload_id, $new_file_path));
-
     // Show the uploaded file in browser
     //echo $wordpress_upload_dir['url'] . '/' . basename($new_file_path);die;
 
 }
-remove_filter('upload_dir', 'custom_upload_dir');
+/*remove_filter('upload_dir', 'custom_upload_dir');*/
