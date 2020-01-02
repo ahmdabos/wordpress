@@ -18,21 +18,19 @@ include 'functions.php';
 
 function my_admin_scripts()
 {
-    wp_enqueue_script('jquery');
-    wp_enqueue_script('media-upload');
-    wp_enqueue_script('thickbox');
+    wp_enqueue_media();
 }
 
-function my_admin_styles()
+/*function my_admin_styles()
 {
     wp_enqueue_style('thickbox');
-}
+}*/
 
 function form_init()
 {
     load_plugin_textdomain('form', false, dirname(plugin_basename(__FILE__)) . '/translation');
     add_action('admin_print_scripts', 'my_admin_scripts');
-    add_action('admin_print_styles', 'my_admin_styles');
+/*    add_action('admin_print_styles', 'my_admin_styles');*/
 }
 
 add_action('plugins_loaded', 'form_init');

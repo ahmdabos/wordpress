@@ -95,22 +95,18 @@ class Submission_Info_Meta_Box
         echo '		<td>';
         echo '          <input id="submission_attachment" name="submission_attachment" type="text" value="' . esc_attr__($submission_attachment) . '" style="width:400px;" />';
         echo '          <input id="my_upl_button" type="button" value="Upload" /><br>';
-        echo '          <img style="max-width:200px;" src="' . esc_attr__($submission_attachment) . '"/>';
+        echo '          <img id="submission_attachment_img" style="max-width:200px;" src="' . esc_attr__($submission_attachment) . '"/>';
         echo '          <script>
-                            jQuery(document).ready( function($) {
-                                jQuery("#my_upl_button").click(function() {
-                                    window.send_to_editor = function(html) {
-                                        imgurl = jQuery(html).attr("src")
-                                        jQuery("#submission_attachment").val(imgurl);
-                                        jQuery("#picsrc").attr("src", imgurl);
-                                        tb_remove();
-                                    }
-                    
-                                    formfield = jQuery("#submission_attachment").attr("name");
-                                    tb_show("", "media-upload.php?type=image&amp;TB_iframe=true" );
-                                    return false;
-                                }); 
-                            });
+                            jQuery("#my_upl_button").click(function () {
+                            var send_attachment_bkp = wp.media.editor.send.attachment;
+                            wp.media.editor.send.attachment = function (props, attachment) {
+                                jQuery("#submission_attachment_img").attr("src", attachment.url);
+                                jQuery("#submission_attachment").val(attachment.url);
+                                wp.media.editor.send.attachment = send_attachment_bkp;
+                            }
+                            wp.media.editor.open();
+                            return false;
+                        });
                         </script>';
         echo '		</td>';
         echo '	</tr>';
