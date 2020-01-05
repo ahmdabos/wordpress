@@ -16,21 +16,9 @@ include 'functions.php';
 
 // load plugin text domain
 
-function my_admin_scripts()
-{
-    wp_enqueue_media();
-}
-
-/*function my_admin_styles()
-{
-    wp_enqueue_style('thickbox');
-}*/
-
 function form_init()
 {
     load_plugin_textdomain('form', false, dirname(plugin_basename(__FILE__)) . '/translation');
-    add_action('admin_print_scripts', 'my_admin_scripts');
-/*    add_action('admin_print_styles', 'my_admin_styles');*/
 }
 
 add_action('plugins_loaded', 'form_init');
@@ -42,6 +30,7 @@ function form_scripts()
     wp_enqueue_script('form_validator', plugins_url('/js/jquery.form-validator/jquery.form-validator.js', __FILE__), array('jquery'), time(), true);
     wp_enqueue_script('file_validator', plugins_url('/js/jquery.form-validator/file.js', __FILE__), array('form_validator'), time(), true);
     wp_enqueue_script('custom', plugins_url('/js/custom.js', __FILE__), array('jquery', 'form_validator'), time(), true);
+    wp_enqueue_media();
 }
 
 add_action('wp_enqueue_scripts', 'form_scripts');
@@ -58,6 +47,7 @@ add_action('widgets_init', 'register_form_widget');
 $list_submissions_setting = get_option('form-setting-2');
 if ($list_submissions_setting == "yes") {
     include 'submission-post-type.php';
+    include 'submission-meta-box.php';
 }
 
 // add settings link

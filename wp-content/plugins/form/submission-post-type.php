@@ -1,236 +1,154 @@
 <?php
-if (!defined('ABSPATH')) {
-    exit;
-}
-// create submission post type
-function submissions_postype()
+
+namespace PostType;
+class Submission
 {
-    $form_args = array(
-        'labels' => array('name' => esc_attr__('Submissions', 'form')),
-        'menu_icon' => 'dashicons-email',
-        'public' => false,
-        'can_export' => true,
-        'show_in_nav_menus' => false,
-        'show_ui' => true,
-        'show_in_rest' => false,
-        'capability_type' => 'post',
-        'capabilities' => array('create_posts' => 'do_not_allow'),
-        'map_meta_cap' => true,
-        'supports' => array('title', 'editor')
-    );
-    register_post_type('submission', $form_args);
-}
+    private $type = 'submission';
+    private $slug = 'submissions';
+    private $name = 'Submissions';
+    private $singular_name = 'Submission';
 
-add_action('init', 'submissions_postype');
-
-
-class Submission_Info_Meta_Box
-{
     public function __construct()
     {
-        if (is_admin()) {
-            add_action('load-post.php', array($this, 'init_metabox'));
-            add_action('load-post-new.php', array($this, 'init_metabox'));
-        }
+        // Register the post type
+        add_action('init', array($this, 'register'));
+        // Admin set post columns
+        add_filter('manage_edit-' . $this->type . '_columns', array($this, 'set_columns'), 10, 1);
+        // Admin edit post columns
+        add_action('manage_' . $this->type . '_posts_custom_column', array($this, 'edit_columns'), 10, 2);
+        // Admin sortable post columns
+        add_filter('manage_edit-' . $this->type . '_sortable_columns', array($this, 'sortable_columns'), 10, 2);
+        // Admin orderby post columns
+        add_filter('request', array($this, 'orderby_columns'), 10, 2);
+
     }
 
-    public function init_metabox()
+    /**
+     * Register post type
+     */
+    public function register()
     {
-        add_action('add_meta_boxes', array($this, 'add_metabox'));
-        add_action('save_post', array($this, 'save_metabox'), 10, 2);
-
-    }
-
-    public function add_metabox()
-    {
-        add_meta_box(
-            'submission_info',
-            __('Submission Info', 'text_domain'),
-            array($this, 'render_metabox'),
-            'submission',
-            'advanced',
-            'default'
+        $labels = array(
+            'name' => $this->name,
+            'singular_name' => $this->singular_name,
+            'add_new' => 'Add New',
+            'add_new_item' => 'Add New ' . $this->singular_name,
+            'edit_item' => 'Edit ' . $this->singular_name,
+            'new_item' => 'New ' . $this->singular_name,
+            'all_items' => 'All ' . $this->name,
+            'view_item' => 'View ' . $this->name,
+            'search_items' => 'Search ' . $this->name,
+            'not_found' => 'No ' . strtolower($this->name) . ' found',
+            'not_found_in_trash' => 'No ' . strtolower($this->name) . ' found in Trash',
+            'parent_item_colon' => '',
+            'menu_name' => $this->name
         );
-
+        $args = array(
+            'labels' => $labels,
+            'supports' => array('title', 'editor'),
+            'taxonomies' => array(''),
+            'hierarchical' => false,
+            'public' => false,
+            'show_ui' => true,
+            'show_in_menu' => true,
+            'menu_position' => 5,
+            'menu_icon' => 'dashicons-dashboard',
+            'show_in_admin_bar' => true,
+            'show_in_nav_menus' => false,
+            'can_export' => true,
+            'has_archive' => false,
+            'exclude_from_search' => true,
+            'publicly_queryable' => false,
+            'capability_type' => 'post',
+            'show_in_rest' => false,
+        );
+        register_post_type($this->type, $args);
     }
 
-    public function render_metabox($post)
+    /**
+     * @param $columns
+     * @return mixed
+     *
+     * Choose the columns you want in
+     * the admin table for this post
+     */
+    public function set_columns($columns)
     {
-        // Add nonce for security and authentication.
-        wp_nonce_field('submission_nonce_action', 'submission_nonce');
-
-        // Retrieve an existing value from the database.
-        $submission_name = get_post_meta($post->ID, 'submission_name', true);
-        $submission_email = get_post_meta($post->ID, 'submission_email', true);
-        $submission_attachment = get_post_meta($post->ID, 'submission_attachment', true);
-
-
-        // Set default values.
-        if (empty($submission_name)) $submission_name = '';
-        if (empty($submission_email)) $submission_email = '';
-        if (empty($submission_attachment)) $submission_attachment = '';
-
-
-        // Form fields.
-        echo '<table class="form-table">';
-
-        echo '	<tr>';
-        echo '		<th><label for="submission_name" class="submission_name_label">' . __('Name', 'text_domain') . '</label></th>';
-        echo '		<td>';
-        echo '			<input type="text" id="submission_name" name="submission_name" class="submission_name_field" placeholder="' . esc_attr__('', 'text_domain') . '" value="' . esc_attr__($submission_name) . '">';
-        echo '		</td>';
-        echo '	</tr>';
-
-
-        echo '	<tr>';
-        echo '		<th><label for="submission_email" class="submission_email_label">' . __('Email', 'text_domain') . '</label></th>';
-        echo '		<td>';
-        echo '			<input type="text" id="submission_email" name="submission_email" class="submission_email_field" placeholder="' . esc_attr__('', 'text_domain') . '" value="' . esc_attr__($submission_email) . '">';
-        echo '		</td>';
-        echo '	</tr>';
-
-
-        echo '	<tr>';
-        echo '		<th><label for="submission_attachment" class="submission_attachment_label">' . __('Attachment', 'text_domain') . '</label></th>';
-        echo '		<td>';
-        echo '          <input id="submission_attachment" name="submission_attachment" type="text" value="' . esc_attr__($submission_attachment) . '" style="width:400px;" />';
-        echo '          <input id="my_upl_button" type="button" value="Upload" /><br>';
-        echo '          <img id="submission_attachment_img" style="max-width:200px;" src="' . esc_attr__($submission_attachment) . '"/>';
-        echo '          <script>
-                            jQuery("#my_upl_button").click(function () {
-                            var send_attachment_bkp = wp.media.editor.send.attachment;
-                            wp.media.editor.send.attachment = function (props, attachment) {
-                                jQuery("#submission_attachment_img").attr("src", attachment.url);
-                                jQuery("#submission_attachment").val(attachment.url);
-                                wp.media.editor.send.attachment = send_attachment_bkp;
-                            }
-                            wp.media.editor.open();
-                            return false;
-                        });
-                        </script>';
-        echo '		</td>';
-        echo '	</tr>';
-        echo '</table>';
-
-
+        $columns['name_column'] = esc_attr__('Name', 'form');
+        $columns['email_column'] = esc_attr__('Email', 'form');
+        $columns['attachment_column'] = esc_attr__('Attachment', 'form');
+        $custom_order = array('cb', 'title', 'name_column', 'email_column', 'attachment_column', 'date');
+        foreach ($custom_order as $colname) {
+            $new[$colname] = $columns[$colname];
+        }
+        return $new;
     }
 
-    public function save_metabox($post_id, $post)
+    /**
+     * @param $column
+     * @param $post_id
+     *
+     * Edit the contents of each column in
+     * the admin table for this post
+     */
+    public function edit_columns($column, $post_id)
     {
-
-        // Add nonce for security and authentication.
-        $nonce_name = $_POST['submission_nonce'];
-        $nonce_action = 'submission_nonce_action';
-
-        // Check if a nonce is set.
-        if (!isset($nonce_name))
-            return;
-
-        // Check if a nonce is valid.
-        if (!wp_verify_nonce($nonce_name, $nonce_action))
-            return;
-
-        // Check if the user has permissions to save data.
-        if (!current_user_can('edit_post', $post_id))
-            return;
-
-        // Check if it's not an autosave.
-        if (wp_is_post_autosave($post_id))
-            return;
-
-        // Check if it's not a revision.
-        if (wp_is_post_revision($post_id))
-            return;
-
-        // Sanitize user input.
-        $submission_new_name = isset($_POST['submission_name']) ? sanitize_text_field($_POST['submission_name']) : '';
-        $submission_new_email = isset($_POST['submission_email']) ? sanitize_text_field($_POST['submission_email']) : '';
-        $submission_new_attachment = isset($_POST['submission_attachment']) ? sanitize_text_field($_POST['submission_attachment']) : '';
+        if ('name_column' == $column) {
+            $name = get_post_meta($post_id, 'submission_name', true);
+            echo $name;
+        }
+        if ('email_column' == $column) {
+            $email = get_post_meta($post_id, 'submission_email', true);
+            echo $email;
+        }
 
 
-        // Update the meta field in the database.
-        update_post_meta($post_id, 'submission_name', $submission_new_name);
-        update_post_meta($post_id, 'submission_email', $submission_new_email);
-        update_post_meta($post_id, 'submission_attachment', $submission_new_attachment);
+        if ('attachment_column' == $column) {
 
-    }
-}
-
-new Submission_Info_Meta_Box;
-
-// dashboard submission columns
-function form_custom_columns($columns)
-{
-    $columns['name_column'] = esc_attr__('Name', 'form');
-    $columns['email_column'] = esc_attr__('Email', 'form');
-    $columns['attachment_column'] = esc_attr__('Attachment', 'form');
-    $custom_order = array('cb', 'title', 'name_column', 'email_column', 'attachment_column', 'date');
-    foreach ($custom_order as $colname) {
-        $new[$colname] = $columns[$colname];
-    }
-    return $new;
-}
-
-add_filter('manage_submission_posts_columns', 'form_custom_columns', 10);
-
-function form_custom_columns_content($column_name, $post_id)
-{
-
-    if ('name_column' == $column_name) {
-        $name = get_post_meta($post_id, 'submission_name', true);
-        echo $name;
-    }
-    if ('email_column' == $column_name) {
-        $email = get_post_meta($post_id, 'submission_email', true);
-        echo $email;
-    }
-
-
-    if ('attachment_column' == $column_name) {
-
-        $attachment = get_post_meta($post_id, 'submission_attachment', true);
-        echo '<img style="width:60px;" src="' . esc_attr__($attachment) . '"/>';
-    }
-}
-
-add_action('manage_submission_posts_custom_column', 'form_custom_columns_content', 10, 2);
-
-// make name and email column sortable
-function form_column_register_sortable($columns)
-{
-    $columns['name_column'] = 'name_sub';
-    $columns['email_column'] = 'email_sub';
-    return $columns;
-}
-
-add_filter('manage_edit-submission_sortable_columns', 'form_column_register_sortable');
-
-function form_name_column_orderby($vars)
-{
-    if (is_admin()) {
-        if (isset($vars['orderby']) && 'name_sub' == $vars['orderby']) {
-            $vars = array_merge($vars, array(
-                'meta_key' => 'name_sub',
-                'orderby' => 'meta_value'
-            ));
+            $attachment = get_post_meta($post_id, 'submission_attachment', true);
+            echo '<img style="width:60px;" src="' . esc_attr__($attachment) . '"/>';
         }
     }
-    return $vars;
-}
 
-add_filter('request', 'form_name_column_orderby');
-
-function form_email_column_orderby($vars)
-{
-    if (is_admin()) {
-        if (isset($vars['orderby']) && 'email_sub' == $vars['orderby']) {
-            $vars = array_merge($vars, array(
-                'meta_key' => 'email_sub',
-                'orderby' => 'meta_value'
-            ));
-        }
+    /**
+     * @param $columns
+     * @return mixed
+     * make column sortable
+     */
+    public function sortable_columns($columns)
+    {
+        $columns['name_column'] = 'name_sub';
+        $columns['email_column'] = 'email_sub';
+        return $columns;
     }
-    return $vars;
+
+    /**
+     * @param $vars
+     * @return mixed
+     * orderby columns
+     */
+    public function orderby_columns($vars)
+    {
+        if (is_admin()) {
+            if (isset($vars['orderby']) && 'name_sub' == $vars['orderby']) {
+                $vars = array_merge($vars, array(
+                    'meta_key' => 'name_sub',
+                    'orderby' => 'meta_value'
+                ));
+            }
+            if (isset($vars['orderby']) && 'email_sub' == $vars['orderby']) {
+                $vars = array_merge($vars, array(
+                    'meta_key' => 'email_sub',
+                    'orderby' => 'meta_value'
+                ));
+            }
+        }
+        return $vars;
+    }
+
+
 }
 
-add_filter('request', 'form_email_column_orderby');
+new Submission();
+
+
