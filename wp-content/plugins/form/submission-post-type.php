@@ -26,6 +26,7 @@ class Submission
     /**
      * Register post type
      */
+
     public function register()
     {
         $labels = array(
@@ -43,6 +44,7 @@ class Submission
             'parent_item_colon' => '',
             'menu_name' => $this->name
         );
+
         $args = array(
             'labels' => $labels,
             'supports' => array('title', 'editor'),
@@ -62,6 +64,7 @@ class Submission
             'capability_type' => 'post',
             'show_in_rest' => false,
         );
+
         register_post_type($this->type, $args);
     }
 
@@ -104,7 +107,6 @@ class Submission
 
 
         if ('attachment_column' == $column) {
-
             $attachment = get_post_meta($post_id, 'submission_attachment', true);
             echo '<img style="width:60px;" src="' . esc_attr__($attachment) . '"/>';
         }
@@ -145,8 +147,6 @@ class Submission
         }
         return $vars;
     }
-
-
 }
 
 new Submission();

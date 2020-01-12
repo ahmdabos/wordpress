@@ -24,7 +24,6 @@ function form_admin_init()
     add_settings_field('form-field-2', esc_attr__('Submissions', 'form'), 'form_field_callback_2', 'form-general', 'form-general-section');
     register_setting('form-general-options', 'form-setting-2', array('sanitize_callback' => 'sanitize_key'));
 
-
     add_settings_field('form-field-3', esc_attr__('Reply', 'form'), 'form_field_callback_3', 'form-general', 'form-general-section');
     register_setting('form-general-options', 'form-setting-3', array('sanitize_callback' => 'sanitize_key'));
 
@@ -35,6 +34,7 @@ function form_admin_init()
 
     add_settings_field('form-field-6', esc_attr__('Email', 'form'), 'form_field_callback_6', 'form-label', 'form-label-section');
     register_setting('form-label-options', 'form-setting-6', array('sanitize_callback' => 'sanitize_text_field'));
+
     add_settings_field('form-field-7', esc_attr__('Attachment', 'form'), 'form_field_callback_7', 'form-label', 'form-label-section');
     register_setting('form-label-options', 'form-setting-7', array('sanitize_callback' => 'sanitize_text_field'));
 
@@ -51,7 +51,6 @@ function form_admin_init()
 
     add_settings_field('form-field-17', esc_attr__('Reply message', 'form'), 'form_field_callback_17', 'form-message', 'form-message-section');
     register_setting('form-message-options', 'form-setting-17', array('sanitize_callback' => 'sanitize_text_field'));
-
 }
 
 add_action('admin_init', 'form_admin_init');
@@ -84,6 +83,7 @@ function form_field_callback_3()
                   value='yes'> <?php esc_attr_e('Activate confirmation email to sender.', 'form'); ?></label>
     <?php
 }
+
 
 function form_field_callback_5()
 {
