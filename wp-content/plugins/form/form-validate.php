@@ -35,35 +35,6 @@ if (strlen($value) > 0) {
 }
 $form_data['form_lastname'] = $value;
 
-/*if (!$_FILES['attachment']['name']) {
-    $error = true;
-    $error_class['form_attachment_required'] = true;
-} else {
-    $allowed_image_extension = array(
-'image/png'
-'text/plain'
-'image/gif'
-'text/plain'
-'application/vnd.ms-powerpoint'
-'application/pdf'
-    );
-    // Get image file extension
-    $file_extension = strtolower(pathinfo($_FILES["attachment"]["name"], PATHINFO_EXTENSION));
-    if ($_FILES['attachment']['size'] > 2097152) {
-        $error = true;
-        $error_class['form_attachment_size'] = true;
-    }
-    if (!in_array($file_extension, $allowed_image_extension)) {
-        $error = true;
-        $error_class['form_attachment_type'] = true;
-    }
-}
-*/
-
-
-
-
-
 
 
 

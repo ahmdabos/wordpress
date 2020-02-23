@@ -21,6 +21,19 @@ enctype="multipart/form-data">
     />
     </div>
     <div>
+     <label for="form_name">' . esc_attr($name_label) . ': </label>
+     <input 
+        type="text" 
+        name="form_name" 
+        id="form_name" 
+        data-validation="required"
+        data-validation-error-msg-required="Name is required"
+        value="' . esc_attr($form_data['form_name']) . '" 
+        />
+        <span class="error">' . esc_attr($email_required) . '</span>
+    </div>
+</div>
+    <div>
         <label for="form_email">' . esc_attr($email_label) . ': </label>
         <input 
         type="email" 
@@ -46,7 +59,6 @@ enctype="multipart/form-data">
         data-validation-error-msg-size="Max size 2MB"
         data-validation-error-msg-mime="Only jpg, png, gif allowed"
         />
-        
     </div>
     <div class="form-hide">
         <input 

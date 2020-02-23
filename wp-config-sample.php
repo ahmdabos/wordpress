@@ -58,9 +58,6 @@ define( 'NONCE_SALT',       'put your unique phrase here' );
 /**#@-*/
 
 /**
- * Sanitization input going form to database (Sql)
- * Escaping output data from database to web
- *
  * WordPress Database Table prefix.
  *
  * You can have multiple installations in one database if you give each

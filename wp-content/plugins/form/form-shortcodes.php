@@ -75,6 +75,7 @@ function form_shortcode($atts) {
 	} else {
         return $email_form;
 	}	   		
-} 
+}
+
 add_shortcode('form', 'form_shortcode');
 add_shortcode('contact-widget', 'form_shortcode');

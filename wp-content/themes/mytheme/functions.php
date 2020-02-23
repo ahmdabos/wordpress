@@ -1,49 +1,14 @@
 <?php
-
 if (!function_exists('mytheme_setup')) :
-    /**
-     * Sets up theme defaults and registers support for various WordPress features.
-     *
-     * Note that this function is hooked into the after_setup_theme hook, which
-     * runs before the init hook. The init hook is too late for some features, such
-     * as indicating support for post thumbnails.
-     */
     function mytheme_setup()
     {
-        /*
-         * Make theme available for translation.
-         * Translations can be filed in the /languages/ directory.
-         * If you're building a theme based on mytheme, use a find and replace
-         * to change 'mytheme' to the name of your theme in all the template files.
-         */
         load_theme_textdomain('mytheme', get_template_directory() . '/languages');
-
-        // Add default posts and comments RSS feed links to head.
         add_theme_support('automatic-feed-links');
-
-        /*
-         * Let WordPress manage the document title.
-         * By adding theme support, we declare that this theme does not use a
-         * hard-coded <title> tag in the document head, and expect WordPress to
-         * provide it for us.
-         */
         add_theme_support('title-tag');
-
-        /*
-         * Enable support for Post Thumbnails on posts and pages.
-         *
-         * @link https://developer.wordpress.org/themes/functionality/featured-images-post-thumbnails/
-         */
         add_theme_support('post-thumbnails');
-
-        // This theme uses wp_nav_menu() in one location.
         register_nav_menus(array(
             'menu-1' => esc_html__('Primary', 'mytheme'),
         ));
-        /*
-         * Switch default core markup for search form, comment form, and comments
-         * to output valid HTML5.
-         */
         add_theme_support('html5', array(
             'search-form',
             'comment-form',
@@ -51,18 +16,9 @@ if (!function_exists('mytheme_setup')) :
             'gallery',
             'caption',
         ));
-
-
     }
 endif;
 add_action('after_setup_theme', 'mytheme_setup');
-
-
-/**
- * Register widget area.
- *
- * @link https://developer.wordpress.org/themes/functionality/sidebars/#registering-a-sidebar
- */
 function mytheme_widgets_init()
 {
     register_sidebar(array(
@@ -79,10 +35,6 @@ function mytheme_widgets_init()
 
 add_action('widgets_init', 'mytheme_widgets_init');
 
-
-/**
- * Enqueue scripts and styles.
- */
 function mytheme_scripts()
 {
     wp_enqueue_style('mytheme-style', get_stylesheet_uri());
@@ -104,25 +56,8 @@ function mytheme_scripts()
 add_action('wp_enqueue_scripts', 'mytheme_scripts');
 
 
-/**
- * Custom template tags for this theme.
- */
-require get_template_directory() . '/inc/template-tags.php';
-
-/**
- * Functions which enhance the theme by hooking into WordPress.
- */
-require get_template_directory() . '/inc/template-functions.php';
-
-/**
- * add image size
- */
 add_image_size('blog-thumbnail', 400, 300, false);
 
-
-/**
- * Custom excerpt link
- */
 function custom_excerpt_more()
 {
     return sprintf(' <a href="%1$s" class="read-more" >%2$s</a>', get_permalink(get_the_ID()), __('...Continue', 'textdomain'));
@@ -130,10 +65,6 @@ function custom_excerpt_more()
 
 add_filter('excerpt_more', 'custom_excerpt_more');
 
-
-/**
- * Custom excerpt length
- */
 function custom_excerpt_lengh()
 {
     return 50;
@@ -142,20 +73,11 @@ function custom_excerpt_lengh()
 add_filter('excerpt_length', 'custom_excerpt_lengh');
 
 
-/**
- * Custom post type
- */
+add_filter('use_block_editor_for_post', '__return_false', 10);
+
+require get_template_directory() . '/inc/template-tags.php';
+require get_template_directory() . '/inc/template-functions.php';
 require get_template_directory() . '/inc/custom-post-type.php';
-
-
-/**
- * Custom Taxonomy
- */
 require get_template_directory() . '/inc/custom-taxonomy.php';
-
-
-/**
- * Custom Metabox
- */
 require get_template_directory() . '/inc/custom-metabox.php';
 
